@@ -8,8 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111827'/%3E%3Cpath d='M9 17l5 5 9-11' stroke='%23fff' stroke-width='3.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com/3.4.16"></script>
   <script>
     window.tailwind = window.tailwind || {};
@@ -17,55 +16,74 @@
     const c = n => `rgb(var(--${n}) / <alpha-value>)`;
     tailwind.config = {
       theme: { extend: {
-        fontFamily: { sans: ['"Plus Jakarta Sans"', "system-ui", "sans-serif"], display: ["Outfit", "system-ui", "sans-serif"] },
+        fontFamily: { sans: ['"Plus Jakarta Sans"', "system-ui", "sans-serif"], display: ["var(--ft)"] },
         colors: { page: c("base"), alt: c("alt"), card: c("card"), line: c("line"), ink: c("ink"), muted: c("muted"),
                   acc: c("acc"), acc2: c("acc2"), onacc: c("onacc"), hero: c("hero"), tx: c("tx") }
       } }
     };
     })();
   </script>
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
   <style>
-    /* Los colores se llenan según el giro (?giro=). Por defecto: servicios profesionales / contratistas. */
+    /* Los colores y la tipografía se llenan según el giro (?giro=). Por defecto: servicios profesionales / contratistas. */
     :root { --base: 255 255 255; --alt: 244 246 250; --card: 255 255 255; --line: 226 232 240; --ink: 11 22 48; --muted: 91 103 130;
             --acc: 255 183 3; --acc2: 251 133 0; --onacc: 11 22 48; --hero: 8 18 38; --tx: 180 83 9; --shadow: 15 23 42;
-            --accLight: #ffd97a; --glass: rgba(255,255,255,.72); --glass-line: rgba(226,232,240,.9); }
-    html { scroll-behavior: smooth; scroll-padding-top: 120px; }
+            --accLight: #ffd97a; --glass: rgba(255,255,255,.72); --glass-line: rgba(226,232,240,.9);
+            --ft: "Outfit", system-ui, sans-serif; }
+    html { scroll-behavior: smooth; scroll-padding-top: 118px; }
     body { font-family: "Plus Jakarta Sans", system-ui, sans-serif; background: rgb(var(--base)); color: rgb(var(--ink));
            -webkit-font-smoothing: antialiased; overflow-x: hidden; opacity: 0; transition: opacity .5s; animation: mostrar 0s 2.5s forwards; }
     body.listo { opacity: 1; }
     @keyframes mostrar { to { opacity: 1; } }
-    .font-display, .h2 { font-family: "Outfit", system-ui, sans-serif; }
-    .h2 { font-weight: 800; letter-spacing: -.025em; line-height: 1.05; font-size: clamp(30px, 5.5vw, 52px); }
+
+    /* ---------- íconos SVG (Lucide, trazo fino) ---------- */
+    svg.lucide { width: 1.15em; height: 1.15em; flex-shrink: 0; stroke-width: 1.6; }
+    .estrella { color: #fbbf24; fill: #fbbf24; }
+    .wa-svg { width: 1.3em; height: 1.3em; fill: currentColor; flex-shrink: 0; }
+
+    /* ---------- tipografía editorial ---------- */
+    .font-display, .h2, .h1 { font-family: var(--ft); }
+    .h2 { font-size: clamp(32px, 5.6vw, 56px); }
+    .tech .h1 { font-weight: 900; letter-spacing: -.045em; line-height: .95; }
+    .tech .h2 { font-weight: 800; letter-spacing: -.035em; line-height: 1.02;
+                background: linear-gradient(180deg, rgb(var(--ink)) 35%, rgb(var(--ink) / .62)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .tech.oscuro .h2 { background-image: linear-gradient(180deg, #ffffff 20%, #b4b8c2 70%, #8b909c); }
+    .serif .h1 { font-weight: 700; letter-spacing: -.02em; line-height: 1.02; }
+    .serif .h2 { font-weight: 600; letter-spacing: -.015em; line-height: 1.08; }
+    .kw { background: linear-gradient(100deg, rgb(var(--tx)), rgb(var(--acc)) 55%, rgb(var(--acc2))); -webkit-background-clip: text; background-clip: text; color: transparent;
+          -webkit-text-fill-color: transparent; padding-right: .06em; }
+    .serif .kw { font-style: italic; font-weight: 500; }
+    .h1 .kw, .claro .kw { background-image: linear-gradient(100deg, var(--accLight), rgb(var(--acc)) 55%, rgb(var(--acc2))); }
+    .tech .h1 .kw { background-image: linear-gradient(180deg, #fff 0%, var(--accLight) 35%, rgb(var(--acc)) 75%, rgb(var(--acc2))); }
 
     /* ---------- color y vidrio ---------- */
     .grad { background-image: linear-gradient(135deg, rgb(var(--acc)), rgb(var(--acc2))); }
-    .grad-text { background: linear-gradient(100deg, var(--accLight), rgb(var(--acc)) 55%, rgb(var(--acc2)));
-                 -webkit-background-clip: text; background-clip: text; color: transparent; }
     .num { background: linear-gradient(135deg, rgb(var(--tx)), rgb(var(--acc2))); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .glass { background: var(--glass); border: 1px solid var(--glass-line); backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); }
-    .glass-strong { background: rgb(var(--card) / .9); border: 1px solid var(--glass-line); backdrop-filter: blur(22px) saturate(170%); -webkit-backdrop-filter: blur(22px) saturate(170%); }
-    .glass-dark { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); color: #fff;
+    .glass-strong { background: rgb(var(--card) / .92); border: 1px solid var(--glass-line); backdrop-filter: blur(22px) saturate(170%); -webkit-backdrop-filter: blur(22px) saturate(170%); }
+    .glass-dark { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); color: #fff;
                   backdrop-filter: blur(16px) saturate(160%); -webkit-backdrop-filter: blur(16px) saturate(160%); }
-    .shadow-soft { box-shadow: 0 10px 30px -12px rgb(var(--shadow) / .18); }
-    .shadow-deep { box-shadow: 0 40px 80px -30px rgb(var(--shadow) / .45), 0 18px 36px -18px rgb(var(--shadow) / .3); }
+    .shadow-soft { box-shadow: 0 1px 2px rgb(var(--shadow) / .05), 0 12px 32px -14px rgb(var(--shadow) / .2); }
+    .shadow-deep { box-shadow: 0 2px 4px rgb(var(--shadow) / .06), 0 24px 48px -20px rgb(var(--shadow) / .35), 0 50px 100px -40px rgb(var(--shadow) / .35); }
+    .ico-box { background: rgb(var(--acc) / .1); color: rgb(var(--tx)); box-shadow: inset 0 0 0 1px rgb(var(--acc) / .25); }
+    .ico-box-d { background: rgba(255,255,255,.07); color: var(--accLight); box-shadow: inset 0 0 0 1px rgba(255,255,255,.15); }
     .blob { position: absolute; width: 440px; height: 440px; border-radius: 50%; filter: blur(100px); opacity: .16; background: rgb(var(--acc)); pointer-events: none; }
 
-    /* ---------- barra superior ---------- */
-    .nav { background: rgba(10,14,25,.28); border: 1px solid rgba(255,255,255,.14); color: #fff;
-           backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); transition: all .35s; }
-    .nav-links a { opacity: .85; transition: .2s; }
+    /* ---------- header único (cintillo + navbar) ---------- */
+    .hdr { background: rgb(var(--hero) / .8); color: #fff; border-bottom: 1px solid rgba(255,255,255,.08);
+           backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%); transition: box-shadow .3s; }
+    html.solid .hdr { box-shadow: 0 18px 40px -20px rgba(0,0,0,.55); }
+    .cinta { border-bottom: 1px solid rgba(255,255,255,.07); background: linear-gradient(90deg, transparent, rgb(var(--acc) / .16), transparent); }
+    .nav-links a { opacity: .78; transition: .2s; }
     .nav-links a:hover { opacity: 1; color: var(--accLight); }
-    html.solid .nav { background: rgb(var(--base) / .86); border-color: rgb(var(--line)); color: rgb(var(--ink)); box-shadow: 0 14px 40px -14px rgb(var(--shadow) / .3); }
-    html.solid .nav-links a:hover { color: rgb(var(--tx)); }
-    .lang { display: inline-flex; padding: 3px; border-radius: 12px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2); font-size: 12px; font-weight: 800; }
+    .lang { display: inline-flex; padding: 3px; border-radius: 12px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); font-size: 12px; font-weight: 800; }
     .lang span { display: inline-flex; align-items: center; gap: 5px; padding: 6px 9px; border-radius: 9px; transition: .25s; white-space: nowrap; opacity: .7; }
     .lang span.on { background: linear-gradient(135deg, rgb(var(--acc)), rgb(var(--acc2))); color: rgb(var(--onacc)); opacity: 1; box-shadow: 0 4px 14px -4px rgb(var(--acc) / .7); }
-    .lang svg { width: 16px; height: 11px; border-radius: 2px; flex-shrink: 0; }
-    html.solid .lang { background: rgb(var(--alt)); border-color: rgb(var(--line)); }
+    .lang .flag { width: 16px; height: 11px; border-radius: 2px; flex-shrink: 0; }
 
     /* ---------- portada ---------- */
     .hero-velo { background:
-      linear-gradient(180deg, rgb(var(--hero) / .45) 0%, transparent 28%, rgb(var(--hero) / .5) 76%, rgb(var(--hero)) 100%),
+      linear-gradient(180deg, rgb(var(--hero) / .35) 0%, transparent 25%, rgb(var(--hero) / .5) 76%, rgb(var(--hero)) 100%),
       linear-gradient(100deg, rgb(var(--hero) / .88) 0%, rgb(var(--hero) / .6) 48%, rgb(var(--hero) / .18) 100%),
       radial-gradient(700px 500px at 15% 40%, rgb(var(--acc) / .22), transparent 70%); }
     .kb { animation: kb 18s ease-out both; }
@@ -89,57 +107,92 @@
     .tag-top { position: absolute; top: 16px; left: 16px; display: inline-flex; align-items: center; gap: 6px; border-radius: 999px;
                padding: 6px 12px; font-size: 12px; font-weight: 800; box-shadow: 0 10px 24px -8px rgba(0,0,0,.5); }
     .tag-star { background: linear-gradient(135deg, #fde68a, #f59e0b); color: #422006; }
-    .check { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; background: rgba(16,185,129,.15); color: #10b981; font-size: 11px; flex-shrink: 0; }
+    .check { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; background: rgba(16,185,129,.14); color: #10b981; font-size: 12px; flex-shrink: 0; }
+    .check svg.lucide { stroke-width: 2.4; }
+
+    /* ---------- portafolio bento ---------- */
+    .bento { display: grid; gap: 14px; grid-template-columns: repeat(2, 1fr); grid-auto-rows: 170px; }
+    .bento .t-a, .bento .t-cta { grid-column: span 2; }
+    .bento .t-a { grid-row: span 2; }
+    @media (min-width: 768px) {
+      .bento { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 230px; gap: 18px; }
+      .bento .t-b, .bento .t-e { grid-column: span 2; }
+    }
+    /* La galería siempre visible: nunca depende de la animación de entrada */
+    .bento, .bento .tile, .bento .tile img { opacity: 1 !important; visibility: visible; }
+    .tile img { transition: transform 1.4s cubic-bezier(.2,.7,.2,1); }
+    .tile:hover img { transform: scale(1.08); }
+    .tile .flecha { opacity: 0; transform: translate(-6px, 6px); transition: .4s; }
+    .tile:hover .flecha { opacity: 1; transform: none; }
 
     /* ---------- comparativa ---------- */
     .comparativa th, .comparativa td { padding: 14px 10px; text-align: center; border-top: 1px solid rgb(var(--line)); }
     .comparativa thead th { border-top: 0; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: rgb(var(--muted)); }
     .comparativa td:first-child, .comparativa th:first-child { text-align: left; padding-left: 22px; font-weight: 600; }
     .comparativa .nos { background: rgb(var(--acc) / .09); }
-    .comparativa thead .nos { color: rgb(var(--ink)); border-radius: 14px 14px 0 0; }
-    .si, .no { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; font-size: 13px; }
+    .comparativa thead .nos { color: rgb(var(--ink)); }
+    .si, .no { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; font-size: 14px; }
     .si { background: #10b981; color: #fff; box-shadow: 0 6px 14px -6px rgba(16,185,129,.8); }
+    .si svg.lucide, .no svg.lucide { stroke-width: 2.6; }
     .no { background: rgba(239,68,68,.12); color: #ef4444; }
     .tal { font-size: 12px; font-weight: 700; color: #d97706; }
 
+    /* ---------- reseñas ---------- */
+    .barra { height: 8px; border-radius: 99px; background: rgb(var(--line)); overflow: hidden; }
+    .barra i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #fbbf24, #f59e0b); }
+
     /* ---------- FAQ ---------- */
     summary::-webkit-details-marker { display: none; }
-    .faq-ico { width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; flex-shrink: 0; font-size: 13px; transition: transform .3s; }
-    details[open] .faq-ico { transform: rotate(45deg); }
+    .acc { background: rgb(var(--card)); border: 1px solid rgb(var(--line)); transition: border-color .3s, box-shadow .3s; }
+    .acc:hover { border-color: rgb(var(--acc) / .45); }
+    .acc[open] { border-color: rgb(var(--acc) / .8); box-shadow: 0 0 0 4px rgb(var(--acc) / .1), 0 20px 44px -20px rgb(var(--acc) / .6); }
+    .faq-ico { width: 34px; height: 34px; border-radius: 11px; display: grid; place-items: center; flex-shrink: 0; transition: transform .35s, background .3s; }
+    .acc[open] .faq-ico { transform: rotate(45deg); background-image: linear-gradient(135deg, rgb(var(--acc)), rgb(var(--acc2))); color: rgb(var(--onacc)); box-shadow: none; }
 
-    /* ---------- cotizador ---------- */
+    /* ---------- cotizador tipo app nativa ---------- */
     .cot-bg { background:
       radial-gradient(600px 420px at 8% 8%, rgb(var(--acc) / .32), transparent 62%),
       radial-gradient(560px 520px at 95% 95%, rgb(var(--acc2) / .28), transparent 62%),
       linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px) 0 0 / 44px 44px,
       linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px) 0 0 / 44px 44px; }
-    .paso { display: flex; align-items: center; gap: 10px; font-family: "Outfit"; font-weight: 700; font-size: 17px; margin-bottom: 12px; }
-    .paso .n { width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; font-size: 13px; font-weight: 800; flex-shrink: 0; }
-    .chips { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+    .marco { padding: 1.5px; border-radius: 2rem;
+             background: linear-gradient(140deg, rgb(var(--acc) / .95), rgba(255,255,255,.18) 38%, rgba(255,255,255,.06) 62%, rgb(var(--acc2) / .9));
+             box-shadow: 0 1px 2px rgba(0,0,0,.12), 0 10px 20px -6px rgba(0,0,0,.25), 0 34px 70px -24px rgba(0,0,0,.55), 0 70px 140px -50px rgb(var(--acc) / .45); }
+    .marco > form { border-radius: calc(2rem - 1.5px); }
+    .paso { display: flex; align-items: center; gap: 10px; font-family: var(--ft); font-weight: 700; font-size: 17px; margin-bottom: 12px; }
+    .paso .n { width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; font: 800 13px "Plus Jakarta Sans", sans-serif; flex-shrink: 0; }
+    .chips { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
     .chips.serv { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
-    .chip { position: relative; display: flex; align-items: center; gap: 10px; text-align: left; padding: 12px 12px 12px 14px; border-radius: 16px;
-            border: 1.5px solid rgb(var(--line)); background: rgb(var(--alt) / .7); color: rgb(var(--ink)); font-weight: 650; font-size: 14px; line-height: 1.25;
-            cursor: pointer; transition: transform .2s, border-color .2s, box-shadow .25s, background .25s; }
-    .chips.serv .chip { padding: 8px 12px 8px 8px; }
-    .chip:hover { border-color: rgb(var(--acc) / .6); transform: translateY(-2px); }
+    .chip { position: relative; display: flex; align-items: center; gap: 10px; text-align: left; padding: 9px 12px 9px 9px; border-radius: 18px;
+            border: 1.5px solid rgb(var(--line)); background: rgb(var(--card)); color: rgb(var(--ink)); font-weight: 650; font-size: 14px; line-height: 1.25;
+            cursor: pointer; box-shadow: 0 1px 2px rgb(var(--shadow) / .06); transition: transform .2s, border-color .2s, box-shadow .25s, background .25s; }
+    .chip:hover { border-color: rgb(var(--acc) / .6); transform: translateY(-2px); box-shadow: 0 10px 20px -12px rgb(var(--shadow) / .35); }
     .chip:active { transform: scale(.97); }
-    .chip.on { border-color: rgb(var(--acc)); background: rgb(var(--acc) / .13); box-shadow: 0 0 0 4px rgb(var(--acc) / .16), 0 12px 26px -12px rgb(var(--acc) / .8); }
-    .chip .ok { margin-left: auto; width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-size: 10px; flex-shrink: 0;
-                border: 1.5px solid rgb(var(--line)); color: transparent; transition: .25s; }
-    .chip.on .ok { border-color: transparent; background-image: linear-gradient(135deg, rgb(var(--acc)), rgb(var(--acc2))); color: rgb(var(--onacc)); transform: scale(1.1); }
+    .chip .ci { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; font-size: 17px;
+                background: rgb(var(--acc) / .1); color: rgb(var(--tx)); box-shadow: inset 0 0 0 1px rgb(var(--acc) / .2); transition: .3s; }
+    .chip .mini { width: 46px; height: 46px; border-radius: 13px; object-fit: cover; flex-shrink: 0; }
+    .chip.on { border-color: rgb(var(--acc)); background: rgb(var(--acc) / .08); box-shadow: 0 0 0 4px rgb(var(--acc) / .14), 0 14px 28px -14px rgb(var(--acc) / .85); }
+    .chip.on .ci { background-image: linear-gradient(135deg, rgb(var(--acc)), rgb(var(--acc2))); color: rgb(var(--onacc)); box-shadow: none; }
+    .chip .ok { margin-left: auto; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 13px; flex-shrink: 0;
+                border: 1.5px solid rgb(var(--line)); color: transparent; transition: background .25s, border-color .25s; }
+    .chip .ok svg.lucide { stroke-width: 3; stroke-dasharray: 24; stroke-dashoffset: 24; }
+    .chip.on .ok { border-color: transparent; background-image: linear-gradient(135deg, rgb(var(--acc)), rgb(var(--acc2))); color: rgb(var(--onacc)); animation: pop .4s cubic-bezier(.3,1.6,.5,1); }
+    .chip.on .ok svg.lucide { animation: dibujar .35s .1s ease-out forwards; }
+    @keyframes pop { 0% { transform: scale(.4); } 100% { transform: scale(1); } }
+    @keyframes dibujar { to { stroke-dashoffset: 0; } }
     .lbl { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
     .inp { width: 100%; border: 1.5px solid rgb(var(--line)); background: rgb(var(--alt) / .7); color: rgb(var(--ink)); border-radius: 14px;
            padding: 13px 14px 13px 42px; font-size: 15px; outline: none; transition: .2s; }
     .inp::placeholder { color: rgb(var(--muted) / .8); }
     .inp:focus { border-color: rgb(var(--acc)); background: rgb(var(--card)); box-shadow: 0 0 0 4px rgb(var(--acc) / .15); }
     textarea.inp { padding-left: 14px; min-height: 110px; resize: vertical; }
-    .inp-ico { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: rgb(var(--muted)); font-size: 14px; pointer-events: none; }
+    .inp-ico { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: rgb(var(--tx)); font-size: 15px; pointer-events: none; }
     .campo.error .inp, .campo.error .chip { border-color: #ef4444; }
     .campo.error .paso, .campo.error .lbl { color: #ef4444; }
 
     /* ---------- WhatsApp flotante ---------- */
     .wa-float { position: fixed; right: 18px; bottom: 18px; z-index: 60; width: 62px; height: 62px; border-radius: 50%; display: grid; place-items: center;
-                background: linear-gradient(135deg, #25d366, #128c7e); color: #fff; font-size: 32px; border: 0; cursor: pointer; transition: transform .2s;
+                background: linear-gradient(135deg, #25d366, #128c7e); color: #fff; font-size: 26px; border: 0; cursor: pointer; transition: transform .2s;
                 animation: waPulso 2s infinite; }
     .wa-float:hover { transform: scale(1.08); }
     @keyframes waPulso { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,.65), 0 14px 30px -8px rgba(37,211,102,.6); }
@@ -148,10 +201,11 @@
     .wa-badge { position: absolute; top: -3px; right: -3px; min-width: 23px; height: 23px; border-radius: 999px; background: #ef4444; color: #fff;
                 font: 800 12px/19px "Plus Jakarta Sans", sans-serif; text-align: center; border: 2px solid #fff; animation: saltito 2.6s ease-in-out infinite; }
     @keyframes saltito { 0%, 80%, 100% { transform: scale(1); } 88% { transform: scale(1.25); } }
-    .aviso { position: fixed; left: 50%; top: 92px; z-index: 70; transform: translate(-50%, -12px); opacity: 0; pointer-events: none; transition: all .3s;
-             background: rgb(var(--ink)); color: rgb(var(--base)); font-weight: 700; font-size: 14px; padding: 11px 18px; border-radius: 999px;
-             max-width: calc(100% - 32px); text-align: center; box-shadow: 0 16px 40px -12px rgba(0,0,0,.5); }
+    .aviso { position: fixed; left: 50%; top: 120px; z-index: 70; transform: translate(-50%, -12px); opacity: 0; pointer-events: none; transition: all .3s;
+             display: flex; align-items: center; gap: 8px; background: rgb(var(--ink)); color: rgb(var(--base)); font-weight: 700; font-size: 14px; padding: 11px 18px;
+             border-radius: 999px; max-width: calc(100% - 32px); box-shadow: 0 16px 40px -12px rgba(0,0,0,.5); }
     .aviso.ver { opacity: 1; transform: translate(-50%, 0); }
+    .aviso svg { width: 18px; height: 18px; color: #10b981; flex-shrink: 0; }
 
     /* ---------- animaciones al hacer scroll ---------- */
     .reveal { opacity: 0; }
@@ -169,7 +223,8 @@
   <div id="app"></div>
 
   <button class="wa-float" id="waFlotante" type="button" aria-label="Cotizar por WhatsApp">
-    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span class="wa-badge">1</span>
+    <svg class="wa-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.38 9.38 0 0 1-1.44-5.01c0-5.19 4.23-9.42 9.43-9.42 2.52 0 4.88.98 6.66 2.76a9.36 9.36 0 0 1 2.76 6.67c0 5.2-4.23 9.42-9.42 9.42M20.06 3.98A11.3 11.3 0 0 0 12.05.67C5.8.67.7 5.76.7 12.02c0 2 .52 3.95 1.52 5.67L.6 23.33l5.77-1.51a11.3 11.3 0 0 0 5.67 1.45h.01c6.25 0 11.34-5.09 11.35-11.35 0-3.03-1.18-5.88-3.33-8.02"/></svg>
+    <span class="wa-badge">1</span>
   </button>
   <div class="aviso" id="aviso" role="status"></div>
 
@@ -211,7 +266,8 @@
     const TEL = { id: "telefono", label: ["Teléfono", "Phone"], tipo: "tel", req: true, ph: "(305) 555-0123" };
     const ZIP = { id: "zip", label: "Zip Code", tipo: "zip", req: true, ph: ["Ej. 33012", "e.g. 33012"] };
     const URGENCIA = { id: "urgencia", label: ["¿Qué tan urgente es?", "How urgent is it?"], tipo: "chips", req: true,
-      opciones: [["🚨 Urgente", "🚨 Urgent"], ["📅 Esta semana", "📅 This week"], ["🗓️ Este mes", "🗓️ This month"], ["💬 Solo cotizando", "💬 Just a quote"]] };
+      iconos: ["siren", "calendar-clock", "calendar", "message-circle"],
+      opciones: [["Urgente", "Urgent"], ["Esta semana", "This week"], ["Este mes", "This month"], ["Solo cotizando", "Just a quote"]] };
     const SERV = (label, id = "servicio") => ({ id, label, tipo: "servicio", req: true });
     const CTA_COTIZAR = ["Cotizar Gratis", "Get Free Estimate"];
 
@@ -326,9 +382,11 @@
           icono: "fa-truck-fast", tituloForm: ["Despacho 24/7", "24/7 Dispatch"],
           beneficios: [["Técnico en camino rápido", "Tech on the way fast"], ["Precio por escrito antes de reparar", "Written price before repair"], ["Garantía en mano de obra", "Labor warranty"]],
           campos: [{ id: "especialidad", label: ["¿Qué especialista necesitas?", "Which specialist do you need?"], tipo: "chips", req: true, serv: true,
-              opciones: [["🚰 Plomero", "🚰 Plumber"], ["⚡ Electricista", "⚡ Electrician"], ["❄️ Aire acondicionado (A/C)", "❄️ A/C - HVAC"]] },
+              iconos: ["droplet", "zap", "snowflake"],
+              opciones: [["Plomero", "Plumber"], ["Electricista", "Electrician"], ["Aire acondicionado (A/C)", "A/C - HVAC"]] },
             { id: "urgencia", label: ["¿Qué tan urgente es?", "How urgent is it?"], tipo: "chips", req: true,
-              opciones: [["🚨 Emergencia hoy", "🚨 Emergency today"], ["📅 Programar visita", "📅 Schedule a visit"]] },
+              iconos: ["siren", "calendar-clock"],
+              opciones: [["Emergencia hoy", "Emergency today"], ["Programar visita", "Schedule a visit"]] },
             NOMBRE, TEL, ZIP,
             { id: "falla", label: ["¿Qué está pasando? (opcional)", "What's going on? (optional)"], tipo: "area",
               ph: ["Ej. Fuga debajo del lavabo, el A/C no enfría...", "e.g. Leak under the sink, A/C not cooling..."] }] }
@@ -385,9 +443,11 @@
           icono: "fa-magnifying-glass", tituloForm: ["Inspección gratis", "Free Inspection"],
           beneficios: [["Inspección y estimado sin costo", "Free inspection & estimate"], ["Fotos y reporte de daños", "Photos & damage report"], ["Respuesta el mismo día", "Same-day response"]],
           campos: [{ id: "proyecto", label: ["¿Qué tipo de proyecto es?", "What type of project?"], tipo: "chips", req: true, serv: true,
-              opciones: [["🏠 Techo", "🏠 Roofing"], ["🛠️ Remodelación", "🛠️ Remodeling"], ["🧱 Pisos / Concreto", "🧱 Floors / Concrete"], ["🎨 Pintura", "🎨 Painting"], ["🏗️ Construcción", "🏗️ Construction"]] },
+              iconos: ["house", "hammer", "layers", "paint-roller", "building-2"],
+              opciones: [["Techo", "Roofing"], ["Remodelación", "Remodeling"], ["Pisos / Concreto", "Floors / Concrete"], ["Pintura", "Painting"], ["Construcción", "Construction"]] },
             { id: "urgencia", label: ["¿Qué tan urgente es?", "How urgent is it?"], tipo: "chips", req: true,
-              opciones: [["🚨 Urgente (goteras o tormenta)", "🚨 Urgent (leak or storm)"], ["📅 Próximas semanas", "📅 Next few weeks"], ["💬 Solo cotizando", "💬 Just a quote"]] },
+              iconos: ["cloud-lightning", "calendar-clock", "message-circle"],
+              opciones: [["Urgente (goteras o tormenta)", "Urgent (leak or storm)"], ["Próximas semanas", "Next few weeks"], ["Solo cotizando", "Just a quote"]] },
             NOMBRE, TEL, ZIP] }
       },
 
@@ -443,8 +503,10 @@
           beneficios: [["Precio claro antes de empezar", "Clear price up front"], ["Disponibilidad esta semana", "Availability this week"], ["Sin contratos forzosos", "No long-term contracts"]],
           campos: [SERV(["¿Qué limpieza necesitas?", "What cleaning do you need?"], "limpieza"),
             { id: "propiedad", label: ["Tipo de propiedad", "Property type"], tipo: "chips", req: true,
-              opciones: [["🏠 Casa", "🏠 House"], ["🏢 Apartamento / Condo", "🏢 Apartment / Condo"], ["💼 Oficina / Comercial", "💼 Office / Commercial"], ["🛎️ Airbnb", "🛎️ Airbnb"]] },
+              iconos: ["house", "building", "briefcase", "key-round"],
+              opciones: [["Casa", "House"], ["Apartamento / Condo", "Apartment / Condo"], ["Oficina / Comercial", "Office / Commercial"], ["Airbnb", "Airbnb"]] },
             { id: "cuartos", label: ["Habitaciones / Baños", "Bedrooms / Baths"], tipo: "chips", req: true,
+              iconos: ["bed-single", "bed-single", "bed", "bed-double", "bed-double", "store"],
               opciones: [["Estudio / 1 baño", "Studio / 1 bath"], ["1 rec / 1 baño", "1 bed / 1 bath"], ["2 rec / 1-2 baños", "2 bed / 1-2 bath"], ["3 rec / 2 baños", "3 bed / 2 bath"], ["4+ rec / 3+ baños", "4+ bed / 3+ bath"], ["Espacio comercial", "Commercial space"]] },
             NOMBRE, TEL, ZIP] }
       },
@@ -500,7 +562,7 @@
           icono: "fa-tree", tituloForm: ["Estimado de jardinería", "Landscaping estimate"],
           beneficios: [["Visita y estimado sin costo", "Free visit & estimate"], ["Limpieza total al terminar", "Full clean-up when done"], ["Trabajo asegurado", "Insured work"]],
           campos: [SERV(["¿Qué servicio necesitas?", "What service do you need?"]),
-            { id: "patio", label: ["Tamaño del patio", "Yard size"], tipo: "chips", req: true,
+            { id: "patio", label: ["Tamaño del patio", "Yard size"], tipo: "chips", req: true, iconos: ["sprout", "trees", "mountain", "circle-help"],
               opciones: [["Pequeño (< 2,500 sq ft)", "Small (< 2,500 sq ft)"], ["Mediano (2,500 - 10,000 sq ft)", "Medium (2,500 - 10,000 sq ft)"], ["Grande (> 10,000 sq ft)", "Large (> 10,000 sq ft)"], ["No estoy seguro", "Not sure"]] },
             URGENCIA, NOMBRE, TEL, ZIP] }
       },
@@ -557,7 +619,8 @@
           beneficios: [["Vamos a tu casa u oficina", "We come to your home or office"], ["Precio claro antes de empezar", "Clear price up front"], ["Citas esta semana", "Appointments this week"]],
           campos: [SERV(["¿Qué paquete quieres?", "Which package?"], "paquete"),
             { id: "vehiculo", label: ["Tipo de vehículo", "Vehicle type"], tipo: "chips", req: true,
-              opciones: [["🚗 Sedán", "🚗 Sedan"], ["🚙 SUV", "🚙 SUV"], ["🛻 Pickup", "🛻 Pickup truck"], ["🚐 Van / Minivan", "🚐 Van / Minivan"]] },
+              iconos: ["car", "car-front", "truck", "bus"],
+              opciones: [["Sedán", "Sedan"], ["SUV", "SUV"], ["Pickup", "Pickup truck"], ["Van / Minivan", "Van / Minivan"]] },
             URGENCIA, NOMBRE, TEL,
             { id: "ubicacion", label: ["Ubicación / Zip Code", "Location / Zip Code"], tipo: "texto", req: true, icon: "fa-location-dot", ph: ["Ej. Hialeah, 33012", "e.g. Hialeah, 33012"] }] }
       },
@@ -614,6 +677,7 @@
           beneficios: [["Precio por adelantado", "Upfront pricing"], ["Movers asegurados", "Insured movers"], ["Fechas disponibles esta semana", "Dates available this week"]],
           campos: [SERV(["¿Qué servicio necesitas?", "What service do you need?"]),
             { id: "tamano", label: ["Tamaño de la mudanza o retiro", "Move or junk size"], tipo: "chips", req: true,
+              iconos: ["sofa", "house", "building", "briefcase", "trash", "trash-2", "container", "construction"],
               opciones: [["Estudio / 1 rec", "Studio / 1 bed"], ["2-3 recámaras", "2-3 bedrooms"], ["4+ recámaras", "4+ bedrooms"], ["Oficina", "Office"],
                          ["Junk: carga pequeña", "Junk: small load"], ["Junk: media carga", "Junk: half load"], ["Junk: carga completa", "Junk: full load"], ["Escombro de obra", "Construction debris"]] },
             NOMBRE, TEL,
@@ -674,7 +738,8 @@
           beneficios: [["Confirmación rápida por WhatsApp", "Fast WhatsApp confirmation"], ["Recordatorio un día antes", "Reminder the day before"], ["Cambios de horario sin costo", "Free rescheduling"]],
           campos: [SERV(["¿Qué servicio quieres?", "Which service?"]),
             { id: "horario", label: ["Horario preferido", "Preferred time"], tipo: "chips", req: true,
-              opciones: [["☀️ Mañana (9-12)", "☀️ Morning (9-12)"], ["🌤️ Tarde (12-4)", "🌤️ Afternoon (12-4)"], ["🌙 Noche (4-8)", "🌙 Evening (4-8)"]] },
+              iconos: ["sunrise", "sun", "moon"],
+              opciones: [["Mañana (9-12)", "Morning (9-12)"], ["Tarde (12-4)", "Afternoon (12-4)"], ["Noche (4-8)", "Evening (4-8)"]] },
             NOMBRE, TEL, { id: "fecha", label: ["Fecha", "Date"], tipo: "fecha", req: true }] }
       },
 
@@ -785,6 +850,7 @@
           beneficios: [["Boceto del diseño sin costo", "Free design sketch"], ["Cotización el mismo día", "Same-day quote"], ["Apartas tu fecha con 50%", "Reserve your date with 50%"]],
           campos: [SERV(["¿Qué necesitas?", "What do you need?"], "tipo"),
             { id: "sabor", label: ["Sabor / Relleno", "Flavor / Filling"], tipo: "chips", req: true,
+              iconos: ["cherry", "cake-slice", "heart", "milk", "carrot", "message-circle"],
               opciones: [["Vainilla con fresa", "Vanilla & strawberry"], ["Chocolate con Nutella", "Chocolate & Nutella"], ["Red velvet", "Red velvet"], ["Tres leches", "Tres leches"], ["Zanahoria", "Carrot"], ["Otro (lo platicamos)", "Other (let's talk)"]] },
             NOMBRE, TEL,
             { id: "fecha", label: ["Fecha del evento", "Event date"], tipo: "fecha", req: true },
@@ -850,26 +916,76 @@
       }
     };
 
+    // ====== GALERÍA DE TRABAJOS RECIENTES (bento) — 5 fotos por giro ======
+    const PORTAFOLIO = {
+      general: [["1600585154340-be6161a56a0c", ["Remodelación integral de casa", "Modern Home Remodel"]], ["1600585152220-90363fe7e115", ["Cocina a la medida", "Custom Kitchen Build"]],
+                ["1584622650111-993a426fbf0a", ["Baño tipo spa", "Spa Bathroom Upgrade"]], ["1621905251918-48416bd8575a", ["Panel eléctrico nuevo", "Electrical Panel Upgrade"]],
+                ["1503387762-592deb58ef4e", ["Planeación de proyecto", "Project Planning"]]],
+      tecnicos: [["1621905251918-48416bd8575a", ["Cambio de panel eléctrico", "Electrical Panel Upgrade"]], ["1585704032915-c3400ca199e7", ["Reparación de fuga de emergencia", "Emergency Leak Repair"]],
+                 ["1617103996702-96ff29b1c467", ["Minisplit en sala", "Living Room Mini-Split"]], ["1584622650111-993a426fbf0a", ["Instalación de baño completo", "Bathroom Fixture Install"]],
+                 ["1558618666-fcd25c85cd64", ["Soldadura de tubería de cobre", "Copper Pipe Soldering"]]],
+      roofing: [["1632759145351-1d592919f522", ["Cambio total de techo", "Full Roof Replacement"]], ["1570129477492-45c003edd2be", ["Techo nuevo estilo colonial", "Colonial Home Re-Roof"]],
+                ["1564013799919-ab600027ffc6", ["Renovación exterior", "Exterior Renovation"]], ["1541888946425-d81bb19240f5", ["Obra comercial", "Commercial Site Build"]],
+                ["1600585154340-be6161a56a0c", ["Construcción moderna", "Modern Home Build"]]],
+      servicios: [["1600585152220-90363fe7e115", ["Limpieza profunda de cocina", "Deep Kitchen Clean"]], ["1584622650111-993a426fbf0a", ["Baño impecable", "Spotless Bathroom Detail"]],
+                  ["1484101403633-562f891dc89a", ["Sala como nueva", "Living Room Refresh"]], ["1502672260266-1c1ef2d93688", ["Airbnb listo para huéspedes", "Airbnb Turnover"]],
+                  ["1527515637462-cff94eecc1ac", ["Aspirado profundo de alfombra", "Carpet Deep Vacuum"]]],
+      landscaping: [["1570129477492-45c003edd2be", ["Jardín frontal renovado", "Front Yard Makeover"]], ["1598902108854-10e335adac99", ["Diseño de jardín a la medida", "Custom Garden Design"]],
+                    ["1592150621744-aca64f48394a", ["Instalación de plantas", "Plant Installation"]], ["1523348837708-15d4a09cfac2", ["Siembra de temporada", "Seasonal Planting"]],
+                    ["1558904541-efa843a96f01", ["Mantenimiento de césped", "Weekly Lawn Care"]]],
+      detailing: [["1601362840469-51e4d8d58785", ["Recubrimiento cerámico", "Showroom Ceramic Coat"]], ["1494976388531-d1058494cdd8", ["Corrección de pintura", "Paint Correction"]],
+                  ["1552519507-da3b142c6e3d", ["Detallado exterior completo", "Full Exterior Detail"]], ["1542362567-b07e54358753", ["Encerado premium", "Premium Wax & Shine"]],
+                  ["1544636331-e26879cd4d9b", ["Detallado de lujo", "Luxury Full Detail"]]],
+      moving: [["1612630741022-b29ec17d013d", ["Mudanza de casa familiar", "Family Home Move"]], ["1609143739217-01b60dad1c67", ["Empaque profesional", "Pro Packing Service"]],
+               ["1519003722824-194d4455a60c", ["Mudanza a otro estado", "Cross-Country Move"]], ["1532996122724-e3c354a0b15b", ["Limpieza de garaje", "Garage Junk Clear-Out"]],
+               ["1586528116311-ad8dd3c8310d", ["Bodega de almacenaje", "Secure Storage Facility"]]],
+      estetica: [["1604654894610-df63bc536371", ["Set acrílico de autor", "Signature Acrylic Set"]], ["1610992015732-2449b76344bc", ["Manicure gel natural", "Natural Gel Manicure"]],
+                 ["1522337360788-8b13dee7a37e", ["Balayage y peinado", "Balayage & Blowout"]], ["1560066984-138dadb4c035", ["Nuestro estudio", "Our Studio"]],
+                 ["1516975080664-ed2fc6a32937", ["Maquillaje para eventos", "Event Makeup"]]],
+      barberia: [["1567894340315-735d7c361db0", ["Fade con diseño", "Skin Fade + Design"]], ["1517832606299-7ae9b720a186", ["Afeitado con toalla caliente", "Hot Towel Shave"]],
+                 ["1512690459411-b9245aed614b", ["La silla VIP", "The VIP Chair"]], ["1621605815971-fbc98d665033", ["Herramientas de precisión", "Precision Tools"]],
+                 ["1622286342621-4bd786c2447c", ["Fade clásico", "Classic Fade"]]],
+      pasteleria: [["1578985545062-69928b1d9587", ["Pastel de chocolate drip", "Chocolate Drip Cake"]], ["1464349095431-e9a21285b5f3", ["Pastel de cumpleaños confeti", "Funfetti Birthday Cake"]],
+                   ["1606890737304-57a1ca8a5b62", ["Selva negra naked cake", "Black Forest Naked Cake"]], ["1563729784474-d77dbb933a9e", ["Torre de cupcakes", "Custom Cupcake Tower"]],
+                   ["1571115177098-24ec42ed204d", ["Pastel tiramisú en capas", "Tiramisu Layer Cake"]]],
+      comida: [["1565299585323-38d6b0865b47", ["Tacos de la casa", "House Tacos"]], ["1613514785940-daed07799d9b", ["Charola de tacos", "Street Taco Platter"]],
+               ["1504544750208-dc0358e63f7f", ["Tacos de asada", "Carne Asada Tacos"]], ["1615870216519-2f9fa575fa5c", ["Tacos con salsa de la casa", "Tacos with House Salsa"]],
+               ["1600891964092-4316c288032e", ["Arrachera con papas", "Steak & Fries Plate"]]]
+    };
+
+    // Fotos de muestra para las reseñas de ejemplo (randomuser.me)
+    const AVATAR = { "María G.": "women/44", "James R.": "men/32", "Carlos M.": "men/75", "Rosa P.": "women/65", "Mike T.": "men/41", "Luis H.": "men/52",
+      "Ana L.": "women/68", "Robert K.": "men/46", "Jorge S.": "men/61", "Patricia V.": "women/57", "Sarah M.": "women/26", "Daniel O.": "men/22",
+      "Guadalupe R.": "women/79", "Tom B.": "men/85", "Ramón F.": "men/67", "Eduardo C.": "men/36", "Jessica W.": "women/33", "Víctor A.": "men/18",
+      "Claudia N.": "women/50", "Kevin D.": "men/11", "Andrés T.": "men/29", "Daniela S.": "women/21", "Ashley P.": "women/12", "Karla M.": "women/90",
+      "Brian L.": "men/3", "Chris J.": "men/94", "Óscar V.": "men/57", "Fernanda G.": "women/17", "Emily R.": "women/8", "Sofía D.": "women/31",
+      "Alejandra T.": "women/63", "Mark S.": "men/7", "Miguel R.": "men/48" };
+
     // ====== TEXTOS DE LA INTERFAZ (ES / EN) ======
     const UI = {
       es: {
-        banner: "Vista Previa Oficial preparada para", nav: ["Nosotros", "Servicios", "Por qué", "Reseñas", "FAQ"],
+        banner: "Vista Previa Oficial preparada para", nav: ["Nosotros", "Servicios", "Galería", "Reseñas", "FAQ"],
         badge: "4.9/5 Calificación · Profesionales con Licencia y Seguro", verServicios: "Ver Servicios",
         enLinea: "En línea · Respondemos en 15 min", stats: ["Garantía de satisfacción", "Tiempo de respuesta", "Años de experiencia"],
         sobrePre: "Sobre nosotros", en: "En", desde: "Desde", masSolicitado: "Más Solicitado", estrella: "Servicio Estrella",
         btnCard: { cotizar: "Cotizar este servicio", cita: "Reservar este servicio", pedido: "Agregar a mi pedido" },
+        portPre: "Portafolio", portTitulo: "Galería de trabajos recientes", portSub: "Resultados reales que hablan por nosotros.",
+        portEtiqueta: "Trabajo reciente", ctaTile: "Tú puedes ser el siguiente",
         porQuePre: "Por qué elegirnos", porQueSub: "Lo que nos hace diferentes, en pocas palabras.",
         comparaTitulo: "La diferencia es clara", competencia: "la competencia", otros: "Otros", aVeces: "A veces",
         filas: ["Licencia y seguro", "Respuesta en 15 minutos", "Atención en español e inglés"],
-        resPre: "Reseñas", resTitulo: "Lo que dicen nuestros clientes", resBase: "Calificación en Google",
+        resPre: "Reseñas", resTitulo: "Lo que dicen nuestros clientes", resBase: "Reseñas de clientes", basado: "Basado en 128 reseñas",
+        enGoogle: "Publicada en Google", fechas: ["hace 2 días", "hace 5 días", "hace 1 semana"],
         resNota: "Reseñas de ejemplo para esta muestra. En su página real se muestran sus reseñas de Google.",
         faqPre: "Preguntas frecuentes", faqTitulo: "Resolvemos tus dudas",
+        faqCardTitulo: "¿Tienes otra pregunta?", faqCardTexto: n => `Habla directo con un experto de ${n}. Te respondemos en minutos por WhatsApp.`,
+        faqCardBtn: "Hablar con un experto",
         progreso: "Tu solicitud", tusDatos: "Tus datos", formSub: "Respuesta inmediata por WhatsApp",
         btnWa: "Enviar Cotización por WhatsApp", btnLlamar: "Solicitar que me llamen",
         notaForm: "Sin compromiso · Tus datos solo los recibe este negocio", respuesta: "Respondemos en menos de 15 minutos",
         completa: "Completa los campos marcados en rojo", agregado: "agregado al cotizador",
-        entrega: ["🛍️ Pick-up (paso por él)", "🛵 Delivery (a domicilio)"], direccion: "Dirección de entrega",
-        pickupMsg: "🛍️ Pick-up (paso a recogerlo)", deliveryMsg: "🛵 Delivery a",
+        entrega: ["Pick-up (paso por él)", "Delivery (a domicilio)"], direccion: "Dirección de entrega",
+        pickupMsg: "Pick-up (paso a recogerlo)", deliveryMsg: "Delivery a",
         para: "Para", gracias: "¡Gracias! Quedo atento(a) a su respuesta 🙌", llamada: "Solicitud de llamada",
         llamame: t => `🙏 Por favor llámenme al *${t}* para darme más información. ¡Gracias!`,
         saludo: n => `¡Hola ${n}! 👋 Vi su página web y me gustaría más información.`,
@@ -877,23 +993,28 @@
         derechos: "Todos los derechos reservados", waAria: "Ir al cotizador"
       },
       en: {
-        banner: "Official Preview prepared for", nav: ["About", "Services", "Why us", "Reviews", "FAQ"],
+        banner: "Official Preview prepared for", nav: ["About", "Services", "Gallery", "Reviews", "FAQ"],
         badge: "4.9/5 Rated · Licensed & Insured Professional", verServicios: "View Services",
         enLinea: "Online · We reply in 15 min", stats: ["Satisfaction guarantee", "Response time", "Years of experience"],
         sobrePre: "About us", en: "At", desde: "From", masSolicitado: "Most Requested", estrella: "Star Service",
         btnCard: { cotizar: "Quote this service", cita: "Book this service", pedido: "Add to my order" },
+        portPre: "Portfolio", portTitulo: "Recent work gallery", portSub: "Real results that speak for themselves.",
+        portEtiqueta: "Recent work", ctaTile: "You could be next",
         porQuePre: "Why choose us", porQueSub: "What makes us different, in a nutshell.",
         comparaTitulo: "The difference is clear", competencia: "the competition", otros: "Others", aVeces: "Sometimes",
         filas: ["Licensed & insured", "15-minute response", "English & Spanish service"],
-        resPre: "Reviews", resTitulo: "What our customers say", resBase: "Google rating",
+        resPre: "Reviews", resTitulo: "What our customers say", resBase: "Customer reviews", basado: "Based on 128 reviews",
+        enGoogle: "Posted on Google", fechas: ["2 days ago", "5 days ago", "1 week ago"],
         resNota: "Sample reviews for this preview. Your real page shows your actual Google reviews.",
         faqPre: "FAQ", faqTitulo: "Your questions, answered",
+        faqCardTitulo: "Still have a question?", faqCardTexto: n => `Talk directly with an expert at ${n}. We reply on WhatsApp within minutes.`,
+        faqCardBtn: "Talk to an expert",
         progreso: "Your request", tusDatos: "Your info", formSub: "Instant reply on WhatsApp",
         btnWa: "Send Quote via WhatsApp", btnLlamar: "Request a Call Back",
         notaForm: "No obligation · Your info goes only to this business", respuesta: "We reply in under 15 minutes",
         completa: "Please complete the fields marked in red", agregado: "added to your quote",
-        entrega: ["🛍️ Pick-up", "🛵 Delivery"], direccion: "Delivery address",
-        pickupMsg: "🛍️ Pick-up (I'll pick it up)", deliveryMsg: "🛵 Delivery to",
+        entrega: ["Pick-up", "Delivery"], direccion: "Delivery address",
+        pickupMsg: "Pick-up (I'll pick it up)", deliveryMsg: "Delivery to",
         para: "To", gracias: "Thank you! Looking forward to your reply 🙌", llamada: "Call back request",
         llamame: t => `🙏 Please call me at *${t}* with more information. Thank you!`,
         saludo: n => `Hi ${n}! 👋 I saw your website and I'd like more information.`,
@@ -910,6 +1031,8 @@
     const GIRO_ID = giroURL in GIROS && giroURL !== "general" ? giroURL : "general";
     const G = GIROS[GIRO_ID];
     const T = TEMAS[G.tema];
+    const PORT = PORTAFOLIO[GIRO_ID];
+    const SERIF = ["estetica", "pasteleria", "comida"].includes(GIRO_ID);   // giros elegantes: títulos Playfair Display con cursiva
     const clienteURL = (params.get("cliente") || "").trim().slice(0, 60);
     const NEGOCIO = clienteURL || G.nombre;
     let LANG = (params.get("lang") || "").toLowerCase();
@@ -919,16 +1042,36 @@
     const $ = id => document.getElementById(id);
     const esc = s => String(s ?? "").replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
     const L = v => Array.isArray(v) ? v[LANG === "en" ? 1 : 0] : (v ?? "");
-    const ic = (n, cls = "", fam = "fa-solid") => `<i class="${fam} ${n} ${cls}" aria-hidden="true"></i>`;
-    const ESTRELLAS = ic("fa-star").repeat(5);
-    const hoyISO = new Date().toISOString().slice(0, 10);
-    const gG = (cls = "w-4 h-4") => `<svg viewBox="0 0 48 48" class="${cls}" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.6-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.9z"/></svg>`;
-    const BANDERA = {
-      en: `<svg viewBox="0 0 19 10" aria-hidden="true"><rect width="19" height="10" fill="#b22234"/><path d="M0 1.15h19M0 2.7h19M0 4.23h19M0 5.77h19M0 7.3h19M0 8.85h19" stroke="#fff" stroke-width=".77"/><rect width="7.6" height="5.4" fill="#3c3b6e"/></svg>`,
-      es: `<svg viewBox="0 0 3 2" aria-hidden="true"><rect width="3" height="2" fill="#c60b1e"/><rect y=".5" width="3" height="1" fill="#ffc400"/></svg>`
-    };
 
-    // ====== APLICAR LA PALETA DEL GIRO ======
+    // Íconos: Lucide (SVG de trazo fino). Los nombres viejos de los datos se traducen aquí.
+    const LU = { "fa-shield-halved": "shield-check", "fa-file-signature": "clipboard-check", "fa-award": "award", "fa-bolt": "zap", "fa-van-shuttle": "truck",
+      "fa-motorcycle": "bike", "fa-calendar-check": "calendar-check", "fa-screwdriver-wrench": "hammer", "fa-language": "languages", "fa-file-invoice-dollar": "receipt",
+      "fa-clock": "clock", "fa-wrench": "wrench", "fa-truck-fast": "siren", "fa-house-chimney": "house", "fa-magnifying-glass": "search", "fa-file-contract": "file-text",
+      "fa-broom": "sparkles", "fa-user-shield": "user-check", "fa-spray-can-sparkles": "spray-can", "fa-circle-check": "badge-check", "fa-tree": "trees", "fa-car-side": "car",
+      "fa-gem": "gem", "fa-truck-moving": "truck", "fa-people-carry-box": "package", "fa-recycle": "recycle", "fa-spa": "flower-2", "fa-pump-soap": "droplets",
+      "fa-heart": "heart", "fa-scissors": "scissors", "fa-stopwatch": "timer", "fa-champagne-glasses": "wine", "fa-cake-candles": "cake", "fa-palette": "palette",
+      "fa-cookie-bite": "cookie", "fa-truck": "truck", "fa-utensils": "utensils-crossed", "fa-fire": "flame", "fa-mobile-screen": "smartphone", "fa-receipt": "receipt",
+      "fa-bag-shopping": "shopping-bag", "fa-location-dot": "map-pin" };
+    const ic = (n, cls = "") => `<i data-lucide="${LU[n] || n}" class="${cls}" aria-hidden="true"></i>`;
+    const pintarIconos = () => { if (window.lucide) lucide.createIcons(); };
+    const WA_D = document.querySelector("#waFlotante path").getAttribute("d");
+    const wa = (cls = "") => `<svg class="wa-svg ${cls}" viewBox="0 0 24 24" aria-hidden="true"><path d="${WA_D}"/></svg>`;
+    const ESTRELLAS = ic("star", "estrella").repeat(5);
+    const hoyISO = new Date().toISOString().slice(0, 10);
+    const avatarURL = n => AVATAR[n] ? `https://randomuser.me/api/portraits/${AVATAR[n]}.jpg` : "";
+    const avatar = (n, cls = "w-12 h-12") => `<span class="relative ${cls} rounded-full grad text-onacc grid place-items-center font-bold shrink-0 overflow-hidden ring-2 ring-card shadow-md">${esc(n.charAt(0))}${avatarURL(n) ? `<img src="${avatarURL(n)}" alt="" loading="lazy" class="absolute inset-0 w-full h-full object-cover" onerror="this.remove()">` : ""}</span>`;
+    const gG = (cls = "w-4 h-4") => `<svg viewBox="0 0 48 48" class="${cls} shrink-0" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.6-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.9z"/></svg>`;
+    const GOOGLE = `<span class="font-bold tracking-tight" style="font-family:Arial,Helvetica,sans-serif"><span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span></span>`;
+    const BANDERA = {
+      en: `<svg class="flag" viewBox="0 0 19 10" aria-hidden="true"><rect width="19" height="10" fill="#b22234"/><path d="M0 1.15h19M0 2.7h19M0 4.23h19M0 5.77h19M0 7.3h19M0 8.85h19" stroke="#fff" stroke-width=".77"/><rect width="7.6" height="5.4" fill="#3c3b6e"/></svg>`,
+      es: `<svg class="flag" viewBox="0 0 3 2" aria-hidden="true"><rect width="3" height="2" fill="#c60b1e"/><rect y=".5" width="3" height="1" fill="#ffc400"/></svg>`
+    };
+    const CHECK_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>`;
+    // Título editorial: las últimas palabras van resaltadas (cursiva en giros elegantes, degradado en técnicos)
+    const kw = t => { const p = String(t).split(" "); if (p.length < 2) return `<span class="kw">${esc(t)}</span>`;
+      const n = p.length >= 5 ? 2 : 1; return `${esc(p.slice(0, -n).join(" "))} <span class="kw">${esc(p.slice(-n).join(" "))}</span>`; };
+
+    // ====== APLICAR LA PALETA Y TIPOGRAFÍA DEL GIRO ======
     const rgb = h => { const n = parseInt(h.slice(1), 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; };
     const trip = h => rgb(h).join(" ");
     const aclarar = (h, f) => { const [r, g, b] = rgb(h); return `rgb(${[r, g, b].map(x => Math.round(x + (255 - x) * f)).join(" ")})`; };
@@ -938,7 +1081,10 @@
     raiz.setProperty("--glass", T.dark ? "rgba(255,255,255,.045)" : "rgba(255,255,255,.72)");
     raiz.setProperty("--glass-line", T.dark ? "rgba(255,255,255,.09)" : `rgb(${trip(T.line)} / .9)`);
     raiz.setProperty("--shadow", T.dark ? "0 0 0" : "15 23 42");
+    raiz.setProperty("--ft", SERIF ? '"Playfair Display", Georgia, serif' : '"Outfit", system-ui, sans-serif');
     raiz.colorScheme = T.dark ? "dark" : "light";
+    document.documentElement.classList.add(SERIF ? "serif" : "tech");
+    if (T.dark) document.documentElement.classList.add("oscuro");
     document.querySelector('meta[name="theme-color"]').content = T.hero;
 
     // ====== ESTADO DEL COTIZADOR (se conserva al cambiar de idioma) ======
@@ -946,62 +1092,62 @@
     if (G.form.campos.some(c => c.tipo === "entrega")) ESTADO.entrega = 0;
     const CAMPO_SERV = G.form.campos.find(c => c.tipo === "servicio" || c.serv);
     const MODO = G.modo || "cotizar";
+    const SECC = ["nosotros", "servicios", "portafolio", "resenas", "faq"];
 
     // ====== SECCIONES ======
     const pre = (t, claro) => `<span class="reveal inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[11px] sm:text-xs font-extrabold uppercase tracking-[.16em] ${claro ? "bg-white/10 text-white border border-white/15" : "bg-acc/10 text-tx border border-acc/20"}"><span class="w-1.5 h-1.5 rounded-full grad"></span>${t}</span>`;
-    const cabeza = (p, h, s) => `<div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">${pre(p)}<h2 class="reveal h2 mt-4">${h}</h2>${s ? `<p class="reveal mt-4 text-muted text-base sm:text-lg">${s}</p>` : ""}</div>`;
+    const cabeza = (p, h, s) => `<div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">${pre(p)}<h2 class="reveal h2 mt-5">${kw(h)}</h2>${s ? `<p class="reveal mt-4 text-muted text-base sm:text-lg">${s}</p>` : ""}</div>`;
     const sello = k => { const [i, t, s] = SELLO[k];
-      return `<div class="sello glass-dark flex items-center gap-3 rounded-2xl pl-2.5 pr-4 py-2.5"><span class="grid place-items-center w-9 h-9 rounded-xl grad text-onacc shrink-0">${ic(i)}</span><span class="leading-tight"><b class="block text-sm">${L(t)}</b><small class="text-white/65 text-xs">${L(s)}</small></span></div>`; };
+      return `<div class="sello glass-dark flex items-center gap-3 rounded-2xl pl-2.5 pr-4 py-2.5"><span class="ico-box-d grid place-items-center w-10 h-10 rounded-xl text-lg shrink-0">${ic(i)}</span><span class="leading-tight"><b class="block text-sm">${L(t)}</b><small class="text-white/60 text-xs">${L(s)}</small></span></div>`; };
 
     function hdr(U) {
       return `
-      <div id="topbar" class="fixed inset-x-0 top-0 z-50 px-3 pt-2 sm:pt-3 flex flex-col items-center gap-2 pointer-events-none">
-        <div class="pointer-events-auto max-w-full min-w-0 inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[11px] sm:text-xs font-semibold text-white bg-black/65 border border-white/15 shadow-lg backdrop-blur-xl">
-          <span class="relative flex h-2.5 w-2.5 shrink-0"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span></span>
-          <span class="truncate">✨ ${U.banner} <b class="font-extrabold">${esc(NEGOCIO)}</b></span>
-        </div>
-        <nav class="nav pointer-events-auto w-full max-w-6xl rounded-2xl">
-          <div class="flex items-center justify-between gap-3 h-14 sm:h-16 px-3 sm:px-5">
-            <a href="#inicio" class="flex items-center gap-2.5 min-w-0">
-              <span class="grad grid place-items-center w-9 h-9 sm:w-10 sm:h-10 rounded-xl text-onacc shadow-lg shrink-0">${ic(G.logo)}</span>
-              <b class="font-display font-bold text-[15px] sm:text-lg truncate">${esc(NEGOCIO)}</b>
-            </a>
-            <div class="nav-links hidden lg:flex items-center gap-7 text-sm font-semibold">
-              ${U.nav.map((t, i) => `<a href="#${["nosotros", "servicios", "por-que", "resenas", "faq"][i]}">${t}</a>`).join("")}
-            </div>
-            <div class="flex items-center gap-2 shrink-0">
-              <button id="langBtn" type="button" class="lang" aria-label="English / Español">
-                <span class="${LANG === "en" ? "on" : ""}">${BANDERA.en} EN</span><span class="${LANG === "es" ? "on" : ""}">${BANDERA.es} ES</span>
-              </button>
-              <a href="#cotizar" class="hidden sm:inline-flex btn-shine grad text-onacc items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold shadow-lg">${ic(G.ctaIcon || "fa-file-signature")} ${L(G.cta)}</a>
-            </div>
+      <header id="topbar" class="hdr sticky top-0 z-50">
+        <div class="cinta"><div class="max-w-6xl mx-auto px-4 h-8 flex items-center justify-center gap-2 text-[11px] sm:text-xs font-semibold text-white/85 min-w-0">
+          <span class="relative flex h-2 w-2 shrink-0"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span></span>
+          <span style="color:var(--accLight)">${ic("sparkles")}</span>
+          <span class="truncate">${U.banner} <b class="font-extrabold text-white">${esc(NEGOCIO)}</b></span>
+        </div></div>
+        <nav class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+          <a href="#inicio" class="flex items-center gap-2.5 min-w-0">
+            <span class="grad grid place-items-center w-9 h-9 sm:w-10 sm:h-10 rounded-xl text-onacc text-lg shadow-lg shrink-0">${ic(G.logo)}</span>
+            <b class="font-display font-bold text-[15px] sm:text-lg truncate">${esc(NEGOCIO)}</b>
+          </a>
+          <div class="nav-links hidden lg:flex items-center gap-7 text-sm font-semibold">
+            ${U.nav.map((t, i) => `<a href="#${SECC[i]}">${t}</a>`).join("")}
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <button id="langBtn" type="button" class="lang" aria-label="English / Español">
+              <span class="${LANG === "en" ? "on" : ""}">${BANDERA.en} EN</span><span class="${LANG === "es" ? "on" : ""}">${BANDERA.es} ES</span>
+            </button>
+            <a href="#cotizar" class="hidden sm:inline-flex btn-shine grad text-onacc items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold shadow-lg">${ic(G.ctaIcon || "fa-file-signature")} ${L(G.cta)}</a>
           </div>
         </nav>
-      </div>`;
+      </header>`;
     }
 
     function hero(U) {
       const palabras = NEGOCIO.split(" ");
       const titulo = palabras.length > 1
-        ? `${esc(palabras.slice(0, -1).join(" "))} <span class="grad-text">${esc(palabras.at(-1))}</span>` : `<span class="grad-text">${esc(NEGOCIO)}</span>`;
+        ? `${esc(palabras.slice(0, -1).join(" "))} <span class="kw">${esc(palabras.at(-1))}</span>` : `<span class="kw">${esc(NEGOCIO)}</span>`;
       const [rn, rs, rt] = G.resenas[0];
       return `
-      <header id="inicio" class="relative isolate overflow-hidden bg-hero text-white">
+      <section id="inicio" class="relative isolate overflow-hidden bg-hero text-white">
         <div class="absolute inset-0 -z-20 overflow-hidden"><div id="heroFoto" class="kb absolute inset-0 bg-cover bg-center" style="background-image:url('${foto(G.portada, 1920)}')"></div></div>
         <div class="hero-velo absolute inset-0 -z-10"></div>
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-36 sm:pt-44 pb-40 sm:pb-48 grid lg:grid-cols-[1fr_340px] gap-12 items-center">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-14 sm:pt-24 pb-40 sm:pb-48 grid lg:grid-cols-[1fr_340px] gap-12 items-center">
           <div class="min-w-0">
             <div class="reveal inline-flex flex-wrap items-center gap-x-2.5 gap-y-1 rounded-full glass-dark pl-1.5 pr-4 py-1.5 text-[12px] sm:text-sm font-semibold">
               <span class="grid place-items-center w-7 h-7 rounded-full bg-white shrink-0">${gG()}</span>
-              <span class="text-amber-400 text-xs tracking-tight">${ESTRELLAS}</span><span>${U.badge}</span>
+              <span class="flex text-xs">${ESTRELLAS}</span><span>${U.badge}</span>
             </div>
-            <p class="reveal mt-7 text-[11px] sm:text-sm font-bold uppercase tracking-[.18em] text-white/75" style="--d:80ms">${ic(G.logo, "mr-2 text-acc")}${esc(L(G.etiqueta))}</p>
-            <h1 id="heroTitulo" class="reveal font-display font-extrabold tracking-tight leading-[.98] text-[44px] sm:text-6xl lg:text-[82px] mt-3 break-words" style="--d:140ms">${titulo}</h1>
+            <p class="reveal mt-7 flex items-center gap-2 text-[11px] sm:text-sm font-bold uppercase tracking-[.18em] text-white/75" style="--d:80ms"><span style="color:var(--accLight)">${ic(G.logo)}</span>${esc(L(G.etiqueta))}</p>
+            <h1 id="heroTitulo" class="h1 reveal text-[46px] sm:text-6xl lg:text-[88px] mt-3 break-words" style="--d:140ms">${titulo}</h1>
             <p class="reveal mt-5 text-lg sm:text-2xl font-medium text-white/90 max-w-2xl" style="--d:200ms">${esc(L(G.slogan))}</p>
             <p class="reveal mt-3 text-sm sm:text-base text-white/70 max-w-xl" style="--d:240ms">${esc(L(G.sub))}</p>
             <div class="reveal mt-8 flex flex-col sm:flex-row gap-3" style="--d:300ms">
-              <a href="#cotizar" class="btn-shine pulse grad text-onacc inline-flex items-center justify-center gap-2.5 rounded-2xl px-7 py-4 text-base font-extrabold shadow-xl hover:scale-[1.03] transition">${ic(G.ctaIcon || "fa-file-signature")} ${L(G.cta)} ${ic("fa-arrow-right", "text-sm")}</a>
-              <a href="#servicios" class="glass-dark inline-flex items-center justify-center gap-2.5 rounded-2xl px-7 py-4 text-base font-bold hover:bg-white/20 transition">${U.verServicios} ${ic("fa-arrow-down", "text-sm")}</a>
+              <a href="#cotizar" class="btn-shine pulse grad text-onacc inline-flex items-center justify-center gap-2.5 rounded-2xl px-7 py-4 text-base font-extrabold shadow-xl hover:scale-[1.03] transition">${ic(G.ctaIcon || "fa-file-signature")} ${L(G.cta)} ${ic("arrow-right")}</a>
+              <a href="#servicios" class="glass-dark inline-flex items-center justify-center gap-2.5 rounded-2xl px-7 py-4 text-base font-bold hover:bg-white/20 transition">${U.verServicios} ${ic("arrow-down")}</a>
             </div>
             <div class="reveal mt-8 flex flex-wrap gap-2.5" style="--d:360ms">${G.sellos.map(sello).join("")}</div>
           </div>
@@ -1009,12 +1155,11 @@
             <div class="float-y glass-dark rounded-3xl p-6 shadow-2xl">
               <div class="flex items-center gap-3">
                 <span class="grid place-items-center w-11 h-11 rounded-full bg-white">${gG("w-6 h-6")}</span>
-                <div><b class="block">Google Reviews</b><span class="text-amber-400 text-xs">${ESTRELLAS}</span></div>
+                <div><b class="block">Google Reviews</b><span class="flex text-xs">${ESTRELLAS}</span></div>
                 <span class="ml-auto font-display text-4xl font-extrabold">4.9</span>
               </div>
               <p class="mt-5 text-white/85 leading-relaxed">“${esc(rt)}”</p>
-              <div class="mt-5 flex items-center gap-3">
-                <span class="grad text-onacc w-10 h-10 rounded-full grid place-items-center font-bold">${esc(rn.charAt(0))}</span>
+              <div class="mt-5 flex items-center gap-3">${avatar(rn, "w-10 h-10")}
                 <div class="leading-tight"><b class="block text-sm">${esc(rn)}</b><small class="text-white/60">${esc(L(rs))}</small></div>
               </div>
               <div class="mt-5 pt-4 border-t border-white/15 flex items-center gap-2.5 text-sm text-white/80">
@@ -1023,7 +1168,7 @@
             </div>
           </aside>
         </div>
-      </header>`;
+      </section>`;
     }
 
     function stats(U) {
@@ -1050,23 +1195,23 @@
               <img id="sobreFoto" src="${foto(G.sobre.img, 1000)}" alt="${esc(NEGOCIO)}" class="w-full h-full object-cover" loading="lazy" onerror="this.style.visibility='hidden'">
             </div>
             <div class="glass-strong shadow-deep absolute -bottom-7 right-3 sm:-right-6 rounded-2xl p-4 sm:p-5 flex items-center gap-3 float-y">
-              <span class="grad text-onacc w-12 h-12 rounded-xl grid place-items-center text-xl shadow-lg">${ic("fa-award")}</span>
+              <span class="ico-box w-12 h-12 rounded-xl grid place-items-center text-xl">${ic("award")}</span>
               <div><b class="font-display text-2xl font-extrabold block leading-none">10+</b><small class="text-muted text-xs font-semibold">${U.stats[2]}</small></div>
             </div>
-            <div class="glass-strong shadow-soft absolute top-4 left-4 rounded-full px-3.5 py-2 text-xs font-bold flex items-center gap-2">${ic("fa-shield-halved", "text-emerald-500")} ${L(SELLO.licensed[1])}</div>
+            <div class="glass-strong shadow-soft absolute top-4 left-4 rounded-full px-3.5 py-2 text-xs font-bold flex items-center gap-2"><span class="text-emerald-500">${ic("shield-check")}</span> ${L(SELLO.licensed[1])}</div>
           </div>
           <div>
             ${pre(U.sobrePre)}
-            <h2 class="reveal h2 mt-4">${esc(L(G.sobre.titulo))}</h2>
+            <h2 class="reveal h2 mt-5">${kw(L(G.sobre.titulo))}</h2>
             <p class="reveal mt-5 text-muted text-base sm:text-lg leading-relaxed">${U.en} <b class="text-ink">${esc(NEGOCIO)}</b>, ${esc(L(G.sobre.texto))}</p>
             <div class="mt-8 grid gap-4">
               ${G.sobre.puntos.map(([i, t, d], k) => `
               <div class="reveal glass shadow-soft rounded-2xl p-4 flex gap-4 items-center hover:-translate-y-0.5 transition" style="--d:${k * 90}ms">
-                <span class="grad text-onacc w-12 h-12 rounded-xl grid place-items-center text-lg shrink-0 shadow-lg">${ic(i)}</span>
+                <span class="ico-box w-12 h-12 rounded-xl grid place-items-center text-xl shrink-0">${ic(i)}</span>
                 <div><b class="block font-display text-lg leading-tight">${esc(L(t))}</b><span class="text-muted text-sm">${esc(L(d))}</span></div>
               </div>`).join("")}
             </div>
-            <a href="#cotizar" class="reveal mt-8 inline-flex items-center gap-2 font-bold text-tx hover:gap-3 transition-all">${L(G.cta)} ${ic("fa-arrow-right")}</a>
+            <a href="#cotizar" class="reveal mt-8 inline-flex items-center gap-2 font-bold text-tx hover:gap-3 transition-all">${L(G.cta)} ${ic("arrow-right")}</a>
           </div>
         </div>
       </section>`;
@@ -1074,8 +1219,8 @@
 
     function servicios(U) {
       const card = (s, k) => {
-        const top = s.top === 1 ? `<span class="tag-top grad text-onacc">${ic("fa-fire")} ${U.masSolicitado}</span>`
-                  : s.top === 2 ? `<span class="tag-top tag-star">${ic("fa-star")} ${U.estrella}</span>` : "";
+        const top = s.top === 1 ? `<span class="tag-top grad text-onacc">${ic("flame")} ${U.masSolicitado}</span>`
+                  : s.top === 2 ? `<span class="tag-top tag-star">${ic("star")} ${U.estrella}</span>` : "";
         return `
         <article class="card reveal group ${s.top ? "top ring-2 ring-acc/60" : ""} relative flex flex-col rounded-3xl overflow-hidden bg-card border border-line shadow-soft hover:-translate-y-1.5 hover:shadow-deep transition duration-500" style="--d:${(k % 3) * 90}ms">
           <div class="relative aspect-[4/3] overflow-hidden bg-alt">
@@ -1092,17 +1237,45 @@
             <h3 class="font-display text-xl font-bold leading-snug">${esc(L(s.n))}</h3>
             <p class="mt-2 text-sm text-muted leading-relaxed">${esc(L(s.d))}</p>
             <ul class="mt-5 space-y-2.5 flex-1">
-              ${s.inc.map(x => `<li class="flex items-center gap-2.5 text-sm font-semibold"><span class="check">${ic("fa-check")}</span>${esc(L(x))}</li>`).join("")}
+              ${s.inc.map(x => `<li class="flex items-center gap-2.5 text-sm font-semibold"><span class="check">${ic("check")}</span>${esc(L(x))}</li>`).join("")}
             </ul>
-            <button type="button" data-elegir="${k}" class="btn-card mt-6 w-full inline-flex justify-center items-center gap-2 rounded-xl py-3.5 font-bold text-sm transition">${U.btnCard[MODO]} ${ic("fa-arrow-right", "text-xs")}</button>
+            <button type="button" data-elegir="${k}" class="btn-card mt-6 w-full inline-flex justify-center items-center gap-2 rounded-xl py-3.5 font-bold text-sm transition">${U.btnCard[MODO]} ${ic("arrow-right")}</button>
           </div>
         </article>`;
       };
       return `
       <section id="servicios" class="relative py-24 sm:py-32 bg-alt overflow-hidden">
         <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
-          ${cabeza(esc(L(G.serv.pre)), esc(L(G.serv.titulo)), esc(L(G.serv.sub)))}
+          ${cabeza(esc(L(G.serv.pre)), L(G.serv.titulo), esc(L(G.serv.sub)))}
           <div id="rejilla" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">${G.serv.lista.map(card).join("")}</div>
+        </div>
+      </section>`;
+    }
+
+    function portafolio(U) {
+      const clases = ["t-a", "t-b", "t-c", "t-d", "t-e"];
+      return `
+      <section id="portafolio" class="relative py-24 sm:py-32 overflow-hidden">
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
+          ${cabeza(U.portPre, U.portTitulo, U.portSub)}
+          <div class="bento">
+            ${PORT.map(([id, t], k) => `
+            <figure class="tile ${clases[k]} relative rounded-3xl overflow-hidden bg-hero shadow-soft cursor-pointer">
+              <img src="${foto(id, k === 0 ? 1400 : 900)}" alt="${esc(L(t))}" loading="eager" decoding="async" class="absolute inset-0 w-full h-full object-cover"
+                   onerror="if (!this.dataset.r) { this.dataset.r = 1; this.src = '${foto(G.serv.lista[k].img, 900)}'; } else { this.style.visibility = 'hidden'; }">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/5 to-transparent"></div>
+              <span class="flecha absolute top-4 right-4 w-10 h-10 rounded-full glass-dark grid place-items-center">${ic("arrow-up-right")}</span>
+              <figcaption class="absolute inset-x-0 bottom-0 p-4 sm:p-6 text-white">
+                <span class="${k === 0 ? "inline-flex" : "hidden sm:inline-flex"} items-center gap-1.5 rounded-full bg-white/15 border border-white/20 backdrop-blur px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider">${ic("camera")} ${U.portEtiqueta}</span>
+                <b class="block mt-2 font-display ${k === 0 ? "text-2xl sm:text-4xl" : "text-base sm:text-2xl"} font-bold leading-tight">${esc(L(t))}</b>
+              </figcaption>
+            </figure>`).join("")}
+            <a href="#cotizar" class="tile t-cta relative rounded-3xl overflow-hidden grad text-onacc p-6 sm:p-8 flex flex-col justify-between shadow-soft">
+              <span class="w-11 h-11 rounded-full bg-black/10 grid place-items-center text-xl">${ic(G.logo)}</span>
+              <div><b class="block font-display text-2xl sm:text-3xl font-bold leading-tight">${U.ctaTile}</b>
+              <span class="mt-3 inline-flex items-center gap-2 font-bold">${L(G.cta)} ${ic("arrow-right")}</span></div>
+            </a>
+          </div>
         </div>
       </section>`;
     }
@@ -1112,17 +1285,17 @@
         ...G.porQue.lista.map(([, t], k) => [L(t), ["no", "tal", "no"][k]]),
         [U.filas[0], "tal"], [U.filas[1], "no"], [U.filas[2], "no"]
       ];
-      const marca = v => v === "si" ? `<span class="si">${ic("fa-check")}</span>` : v === "no" ? `<span class="no">${ic("fa-xmark")}</span>` : `<span class="tal">${U.aVeces}</span>`;
+      const marca = v => v === "si" ? `<span class="si">${ic("check")}</span>` : v === "no" ? `<span class="no">${ic("x")}</span>` : `<span class="tal">${U.aVeces}</span>`;
       return `
-      <section id="por-que" class="relative py-24 sm:py-32 overflow-hidden">
+      <section id="por-que" class="relative py-24 sm:py-32 bg-alt overflow-hidden">
         <div class="blob -bottom-40 -right-40"></div>
         <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
-          ${cabeza(U.porQuePre, esc(L(G.porQue.titulo)), U.porQueSub)}
+          ${cabeza(U.porQuePre, L(G.porQue.titulo), U.porQueSub)}
           <div class="grid md:grid-cols-3 gap-5">
             ${G.porQue.lista.map(([i, t, d], k) => `
             <div class="reveal glass shadow-soft rounded-3xl p-7 relative overflow-hidden hover:-translate-y-1 transition duration-300" style="--d:${k * 100}ms">
               <span class="absolute -top-3 right-4 font-display font-black text-8xl text-ink/5 select-none">0${k + 1}</span>
-              <span class="grad text-onacc w-14 h-14 rounded-2xl grid place-items-center text-2xl shadow-lg">${ic(i)}</span>
+              <span class="ico-box w-14 h-14 rounded-2xl grid place-items-center text-2xl">${ic(i)}</span>
               <h3 class="mt-5 font-display text-xl font-bold">${esc(L(t))}</h3>
               <p class="mt-2 text-muted leading-relaxed">${esc(L(d))}</p>
             </div>`).join("")}
@@ -1134,7 +1307,7 @@
             </div>
             <table class="comparativa w-full table-fixed text-sm">
               <colgroup><col><col style="width:30%"><col style="width:22%"></colgroup>
-              <thead><tr><th></th><th class="nos"><span class="inline-flex flex-col items-center gap-1"><span class="grad text-onacc w-7 h-7 rounded-lg grid place-items-center text-xs">${ic(G.logo)}</span><span class="line-clamp-2 normal-case tracking-normal font-extrabold text-[12px]">${esc(NEGOCIO)}</span></span></th><th>${U.otros}</th></tr></thead>
+              <thead><tr><th></th><th class="nos"><span class="inline-flex flex-col items-center gap-1"><span class="grad text-onacc w-7 h-7 rounded-lg grid place-items-center text-sm">${ic(G.logo)}</span><span class="line-clamp-2 normal-case tracking-normal font-extrabold text-[12px]">${esc(NEGOCIO)}</span></span></th><th>${U.otros}</th></tr></thead>
               <tbody>${filas.map(([t, otro]) => `<tr><td>${esc(t)}</td><td class="nos">${marca("si")}</td><td>${marca(otro)}</td></tr>`).join("")}</tbody>
             </table>
           </div>
@@ -1143,27 +1316,40 @@
     }
 
     function resenas(U) {
+      const barras = [[5, 92], [4, 6], [3, 1], [2, 1], [1, 0]];
       return `
-      <section id="resenas" class="relative py-24 sm:py-32 bg-alt overflow-hidden">
+      <section id="resenas" class="relative py-24 sm:py-32 overflow-hidden">
+        <div class="blob -top-40 right-0"></div>
         <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
           ${cabeza(U.resPre, U.resTitulo, "")}
-          <div class="reveal -mt-6 mb-12 flex items-center justify-center gap-4">
-            <span class="w-14 h-14 rounded-2xl bg-white shadow-soft grid place-items-center">${gG("w-8 h-8")}</span>
-            <div><div class="flex items-baseline gap-2"><b class="font-display text-4xl font-extrabold">4.9</b><span class="text-amber-400">${ESTRELLAS}</span></div>
-            <small class="text-muted font-semibold">${U.resBase}</small></div>
-          </div>
-          <div class="grid md:grid-cols-3 gap-6">
-            ${G.resenas.map(([n, s, t], k) => `
-            <figure class="resena reveal glass shadow-soft rounded-3xl p-7 relative flex flex-col hover:-translate-y-1 transition duration-300" style="--d:${k * 100}ms">
-              ${ic("fa-quote-right", "absolute top-6 right-6 text-4xl text-acc/20")}
-              <span class="text-amber-400 text-sm">${ESTRELLAS}</span>
-              <blockquote class="mt-4 leading-relaxed flex-1">“${esc(t)}”</blockquote>
-              <figcaption class="mt-6 flex items-center gap-3">
-                <span class="grad text-onacc w-11 h-11 rounded-full grid place-items-center font-bold shrink-0">${esc(n.charAt(0))}</span>
-                <div class="leading-tight min-w-0"><b class="block">${esc(n)}</b><small class="text-muted">${esc(L(s))}</small></div>
-                <span class="ml-auto">${gG("w-5 h-5")}</span>
-              </figcaption>
-            </figure>`).join("")}
+          <div class="grid lg:grid-cols-[340px_1fr] gap-6 lg:gap-8 items-start">
+            <aside class="reveal glass-strong shadow-deep rounded-3xl p-7 lg:sticky lg:top-32">
+              <div class="flex items-center gap-3">
+                <span class="w-12 h-12 rounded-2xl bg-white shadow-soft grid place-items-center">${gG("w-7 h-7")}</span>
+                <div class="leading-tight"><div class="text-xl">${GOOGLE}</div><small class="text-muted font-semibold">${U.resBase}</small></div>
+              </div>
+              <div class="mt-6 flex items-end gap-3">
+                <b class="font-display text-6xl font-bold leading-none">4.9</b>
+                <div class="pb-1"><div class="flex">${ESTRELLAS}</div><small class="text-muted font-semibold">${U.basado}</small></div>
+              </div>
+              <div class="mt-6 space-y-2.5">
+                ${barras.map(([e, p]) => `<div class="flex items-center gap-2.5 text-sm font-semibold"><span class="w-3 text-right">${e}</span><span class="text-xs">${ic("star", "estrella")}</span><div class="barra flex-1"><i style="width:${p}%"></i></div><span class="w-9 text-right text-muted">${p}%</span></div>`).join("")}
+              </div>
+              <a href="#cotizar" class="btn-shine grad text-onacc mt-7 w-full inline-flex items-center justify-center gap-2 rounded-xl py-3.5 font-bold text-sm">${L(G.cta)} ${ic("arrow-right")}</a>
+            </aside>
+            <div class="grid sm:grid-cols-2 gap-6">
+              ${G.resenas.map(([n, s, t], k) => `
+              <figure class="resena reveal glass-strong shadow-soft rounded-3xl p-6 sm:p-7 flex flex-col hover:-translate-y-1 transition duration-300 ${k === 2 ? "sm:col-span-2" : ""}" style="--d:${k * 100}ms">
+                <div class="flex items-center gap-3">
+                  ${avatar(n)}
+                  <div class="min-w-0 leading-tight"><b class="block">${esc(n)}</b><small class="text-muted">${esc(L(s))} · ${U.fechas[k]}</small></div>
+                  <span class="ml-auto">${gG("w-6 h-6")}</span>
+                </div>
+                <div class="mt-4 flex flex-wrap items-center gap-2"><span class="flex text-sm">${ESTRELLAS}</span>
+                  <span class="inline-flex items-center gap-1 text-[11px] font-bold text-muted bg-alt rounded-full px-2.5 py-1 border border-line">${gG("w-3 h-3")} ${U.enGoogle}</span></div>
+                <blockquote class="mt-4 leading-relaxed text-[15px] flex-1">“${esc(t)}”</blockquote>
+              </figure>`).join("")}
+            </div>
           </div>
           <p class="text-center text-xs text-muted mt-8">${U.resNota}</p>
         </div>
@@ -1172,33 +1358,49 @@
 
     function faq(U) {
       return `
-      <section id="faq" class="py-24 sm:py-32">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <section id="faq" class="relative py-24 sm:py-32 bg-alt overflow-hidden">
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
           ${cabeza(U.faqPre, U.faqTitulo, "")}
-          <div class="space-y-3">
-            ${G.faq.map(([q, a], n) => `
-            <details class="reveal glass shadow-soft rounded-2xl" ${n === 0 ? "open" : ""} style="--d:${n * 70}ms">
-              <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-5 sm:px-6 py-5 font-display font-semibold text-base sm:text-lg">${esc(L(q))}<span class="faq-ico grad text-onacc">${ic("fa-plus")}</span></summary>
-              <p class="px-5 sm:px-6 pb-6 -mt-1 text-muted leading-relaxed">${esc(L(a))}</p>
-            </details>`).join("")}
+          <div class="grid lg:grid-cols-[.9fr_1.1fr] gap-6 lg:gap-8 items-stretch">
+            <div class="reveal relative rounded-[2rem] overflow-hidden min-h-[440px] shadow-deep text-white flex bg-hero">
+              <img src="${foto(PORT[3][0], 1000)}" alt="" loading="lazy" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.visibility='hidden'">
+              <div class="absolute inset-0 bg-gradient-to-t from-hero via-hero/75 to-hero/5"></div>
+              <div class="claro relative mt-auto p-7 sm:p-9">
+                <div class="flex flex-wrap items-center gap-3">
+                  <div class="flex -space-x-3">${G.resenas.map(([n]) => avatar(n, "w-10 h-10")).join("")}</div>
+                  <span class="inline-flex items-center gap-2 text-xs font-bold rounded-full bg-emerald-400/15 text-emerald-300 border border-emerald-300/30 px-3 py-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>${U.enLinea}</span>
+                </div>
+                <h3 class="h2 mt-5 !text-[34px] sm:!text-[42px]" style="background:none;-webkit-text-fill-color:#fff;color:#fff">${kw(U.faqCardTitulo)}</h3>
+                <p class="mt-3 text-white/80 max-w-md">${esc(U.faqCardTexto(NEGOCIO))}</p>
+                <button id="faqWa" type="button" class="btn-shine btn-wa mt-6 inline-flex items-center gap-2.5 rounded-2xl px-6 py-3.5 font-bold">${wa()} ${U.faqCardBtn}</button>
+              </div>
+            </div>
+            <div class="space-y-3">
+              ${G.faq.map(([q, a], n) => `
+              <details class="acc reveal rounded-2xl" ${n === 0 ? "open" : ""} style="--d:${n * 70}ms">
+                <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-5 sm:px-6 py-5 font-display font-semibold text-base sm:text-lg">${esc(L(q))}<span class="faq-ico ico-box">${ic("plus")}</span></summary>
+                <p class="px-5 sm:px-6 pb-6 -mt-1 text-muted leading-relaxed">${esc(L(a))}</p>
+              </details>`).join("")}
+            </div>
           </div>
         </div>
       </section>`;
     }
 
-    // ---------- cotizador tipo app ----------
-    const ICONOS = { texto: "fa-user", tel: "fa-phone", zip: "fa-location-dot", fecha: "fa-calendar-days", hora: "fa-clock", numero: "fa-users" };
+    // ---------- cotizador tipo app nativa ----------
+    const ICONOS = { texto: "user", tel: "phone", zip: "map-pin", fecha: "calendar", hora: "clock", numero: "users" };
     const esChip = c => ["chips", "servicio", "entrega"].includes(c.tipo);
-    const chip = (texto, i, id, extra = "") =>
-      `<button type="button" class="chip ${ESTADO[id] === i ? "on" : ""}" data-i="${i}">${extra}<span class="min-w-0">${texto}</span><span class="ok">${ic("fa-check")}</span></button>`;
+    const chip = (texto, i, id, lead) =>
+      `<button type="button" class="chip ${ESTADO[id] === i ? "on" : ""}" data-i="${i}">${lead}<span class="min-w-0 flex-1">${texto}</span><span class="ok">${ic("check")}</span></button>`;
+    const circulo = n => `<span class="ci">${ic(n)}</span>`;
 
     function controlChips(c, U) {
       if (c.tipo === "servicio") return `<div class="chips serv" id="f_${c.id}" data-chips="${c.id}">${G.serv.lista.map((s, i) => chip(
         `${esc(L(s.n))}<small class="block text-muted font-semibold text-[11px] mt-0.5">${s.exacto ? "" : U.desde + " "}${esc(L(s.ref))} USD</small>`, i, c.id,
-        `<img src="${foto(s.img, 120)}" alt="" loading="lazy" class="w-11 h-11 rounded-xl object-cover shrink-0">`)).join("")}</div>`;
-      if (c.tipo === "entrega") return `<div class="chips" id="f_${c.id}" data-chips="${c.id}">${U.entrega.map((t, i) => chip(t, i, c.id)).join("")}</div>
-        <div id="dirCaja" class="relative mt-3 ${ESTADO.entrega === 1 ? "" : "hidden"}">${ic("fa-location-dot", "inp-ico")}<input id="f_direccion" class="inp" autocomplete="street-address" placeholder="${U.direccion}" value="${esc(ESTADO.direccion)}"></div>`;
-      return `<div class="chips" id="f_${c.id}" data-chips="${c.id}">${c.opciones.map((o, i) => chip(esc(L(o)), i, c.id)).join("")}</div>`;
+        `<img src="${foto(s.img, 140)}" alt="" loading="lazy" class="mini">`)).join("")}</div>`;
+      if (c.tipo === "entrega") return `<div class="chips" id="f_${c.id}" data-chips="${c.id}">${U.entrega.map((t, i) => chip(t, i, c.id, circulo(["shopping-bag", "bike"][i]))).join("")}</div>
+        <div id="dirCaja" class="relative mt-3 ${ESTADO.entrega === 1 ? "" : "hidden"}"><span class="inp-ico">${ic("map-pin")}</span><input id="f_direccion" class="inp" autocomplete="street-address" placeholder="${U.direccion}" value="${esc(ESTADO.direccion)}"></div>`;
+      return `<div class="chips" id="f_${c.id}" data-chips="${c.id}">${c.opciones.map((o, i) => chip(esc(L(o)), i, c.id, circulo((c.iconos || [])[i] || "circle-dot"))).join("")}</div>`;
     }
 
     function controlInput(c) {
@@ -1227,7 +1429,7 @@
         ...areas.filter(c => c.req).map(bloqueArea),
         `<div>${paso(U.tusDatos)}<div class="grid sm:grid-cols-2 gap-4">${datos.map(c => `
           <div class="campo" data-campo="${c.id}"><label for="f_${c.id}" class="lbl">${esc(L(c.label))}${ast(c)}</label>
-          <div class="relative">${ic(c.icon || ICONOS[c.tipo] || "fa-pen", "inp-ico")}${controlInput(c)}</div></div>`).join("")}</div></div>`,
+          <div class="relative"><span class="inp-ico">${ic(c.icon || ICONOS[c.tipo] || "pencil")}</span>${controlInput(c)}</div></div>`).join("")}</div></div>`,
         ...areas.filter(c => !c.req).map(bloqueArea)
       ].join("");
     }
@@ -1237,36 +1439,38 @@
       <section id="cotizar" class="relative isolate overflow-hidden bg-hero text-white py-24 sm:py-32">
         <div class="cot-bg absolute inset-0 -z-10"></div>
         <div class="max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-[.85fr_1.15fr] gap-12 items-start">
-          <div class="lg:sticky lg:top-36">
+          <div class="claro lg:sticky lg:top-36">
             ${pre(esc(L(G.form.pre)), true)}
-            <h2 class="reveal h2 mt-4">${esc(L(G.form.titulo))}</h2>
+            <h2 class="reveal h2 mt-5" style="background:none;-webkit-text-fill-color:#fff;color:#fff">${kw(L(G.form.titulo))}</h2>
             <p class="reveal mt-4 text-white/75 text-lg">${esc(L(G.form.sub))}</p>
             <ul class="mt-8 space-y-4">
-              ${G.form.beneficios.map((b, k) => `<li class="reveal flex items-center gap-3 font-semibold" style="--d:${k * 80}ms"><span class="grid place-items-center w-8 h-8 rounded-full bg-emerald-400/15 text-emerald-400 shrink-0">${ic("fa-check")}</span>${esc(L(b))}</li>`).join("")}
+              ${G.form.beneficios.map((b, k) => `<li class="reveal flex items-center gap-3 font-semibold" style="--d:${k * 80}ms"><span class="grid place-items-center w-8 h-8 rounded-full bg-emerald-400/15 text-emerald-400 shrink-0">${ic("check")}</span>${esc(L(b))}</li>`).join("")}
             </ul>
             <div class="reveal mt-10 glass-dark rounded-2xl p-5 flex items-center gap-4">
               <span class="grid place-items-center w-12 h-12 rounded-xl bg-white shrink-0">${gG("w-7 h-7")}</span>
-              <div><div class="flex items-center gap-2"><b class="font-display text-xl">4.9</b><span class="text-amber-400 text-xs">${ESTRELLAS}</span></div>
+              <div><div class="flex items-center gap-2"><b class="font-display text-xl">4.9</b><span class="flex text-xs">${ESTRELLAS}</span></div>
               <small class="text-white/70 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>${U.respuesta}</small></div>
             </div>
           </div>
-          <form id="formulario" novalidate class="reveal bg-card text-ink rounded-[2rem] p-5 sm:p-8 shadow-2xl ring-1 ring-white/10" style="--d:120ms">
-            <div class="flex items-center gap-3">
-              <span class="grad text-onacc w-12 h-12 rounded-2xl grid place-items-center text-xl shadow-lg shrink-0">${ic(G.form.icono)}</span>
-              <div class="min-w-0"><div id="formTitulo" class="font-display text-xl font-bold leading-tight">${esc(L(G.form.tituloForm))}</div>
-              <p class="text-muted text-xs sm:text-sm truncate">${esc(NEGOCIO)} · ${U.formSub}</p></div>
-            </div>
-            <div class="mt-6">
-              <div class="flex justify-between text-xs font-bold text-muted mb-1.5"><span>${U.progreso}</span><span id="progTxt">0%</span></div>
-              <div class="h-2 rounded-full bg-alt overflow-hidden"><div id="progBar" class="h-full grad rounded-full transition-all duration-500" style="width:0%"></div></div>
-            </div>
-            <div id="campos" class="mt-7 space-y-7">${camposHTML(U)}</div>
-            <div class="mt-8 grid gap-3">
-              <button id="btnEnviarWa" type="button" class="btn-shine btn-wa w-full inline-flex items-center justify-center gap-2.5 rounded-2xl py-4 px-5 font-extrabold text-base hover:scale-[1.02] transition">${ic("fa-whatsapp", "text-2xl", "fa-brands")} ${L(G.form.btn) || U.btnWa}</button>
-              <button id="btnLlamar" type="button" class="w-full inline-flex items-center justify-center gap-2.5 rounded-2xl py-3.5 px-5 font-bold text-base border-2 border-line hover:border-acc transition">${ic("fa-phone", "text-tx")} ${U.btnLlamar}</button>
-            </div>
-            <p class="mt-4 text-center text-xs text-muted">${ic("fa-lock", "mr-1")} ${U.notaForm}</p>
-          </form>
+          <div class="marco reveal" style="--d:120ms">
+            <form id="formulario" novalidate class="bg-card text-ink p-5 sm:p-8">
+              <div class="flex items-center gap-3">
+                <span class="ico-box w-12 h-12 rounded-2xl grid place-items-center text-xl shrink-0">${ic(G.form.icono)}</span>
+                <div class="min-w-0"><div id="formTitulo" class="font-display text-xl font-bold leading-tight">${esc(L(G.form.tituloForm))}</div>
+                <p class="text-muted text-xs sm:text-sm truncate">${esc(NEGOCIO)} · ${U.formSub}</p></div>
+              </div>
+              <div class="mt-6">
+                <div class="flex justify-between text-xs font-bold text-muted mb-1.5"><span>${U.progreso}</span><span id="progTxt">0%</span></div>
+                <div class="h-2 rounded-full bg-alt overflow-hidden"><div id="progBar" class="h-full grad rounded-full transition-all duration-500" style="width:0%"></div></div>
+              </div>
+              <div id="campos" class="mt-7 space-y-7">${camposHTML(U)}</div>
+              <div class="mt-8 grid gap-3">
+                <button id="btnEnviarWa" type="button" class="btn-shine btn-wa w-full inline-flex items-center justify-center gap-2.5 rounded-2xl py-4 px-5 font-extrabold text-base hover:scale-[1.02] transition">${wa("text-xl")} ${L(G.form.btn) || U.btnWa}</button>
+                <button id="btnLlamar" type="button" class="w-full inline-flex items-center justify-center gap-2.5 rounded-2xl py-3.5 px-5 font-bold text-base border-2 border-line hover:border-acc transition"><span class="text-tx">${ic("phone-call")}</span> ${U.btnLlamar}</button>
+              </div>
+              <p class="mt-4 text-center text-xs text-muted flex items-center justify-center gap-1.5">${ic("lock")} ${U.notaForm}</p>
+            </form>
+          </div>
         </div>
       </section>`;
     }
@@ -1276,15 +1480,15 @@
       <footer class="bg-[#07080c] text-white/65 pt-16 pb-28">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <div class="flex items-center gap-3"><span class="grad grid place-items-center w-10 h-10 rounded-xl text-onacc">${ic(G.logo)}</span><b class="font-display text-xl text-white">${esc(NEGOCIO)}</b></div>
+            <div class="flex items-center gap-3"><span class="grad grid place-items-center w-10 h-10 rounded-xl text-onacc text-lg">${ic(G.logo)}</span><b class="font-display text-xl text-white">${esc(NEGOCIO)}</b></div>
             <p class="mt-4 text-sm max-w-sm">${esc(L(G.slogan))}</p>
-            <div class="mt-5 flex flex-wrap gap-2">${G.sellos.slice(0, 2).map(k => `<span class="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold text-white/80">${ic(SELLO[k][0], "text-acc")} ${L(SELLO[k][1])}</span>`).join("")}</div>
+            <div class="mt-5 flex flex-wrap gap-2">${G.sellos.slice(0, 2).map(k => `<span class="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold text-white/80"><span style="color:var(--accLight)">${ic(SELLO[k][0])}</span> ${L(SELLO[k][1])}</span>`).join("")}</div>
           </div>
           <div><b class="text-white font-display">${U.pieLinks}</b>
-            <ul class="mt-4 space-y-2 text-sm">${U.nav.map((t, i) => `<li><a class="hover:text-white transition" href="#${["nosotros", "servicios", "por-que", "resenas", "faq"][i]}">${t}</a></li>`).join("")}</ul></div>
+            <ul class="mt-4 space-y-2 text-sm">${U.nav.map((t, i) => `<li><a class="hover:text-white transition" href="#${SECC[i]}">${t}</a></li>`).join("")}</ul></div>
           <div><b class="text-white font-display">${U.pieContacto}</b>
             <p class="mt-4 text-sm">${esc(L(G.etiqueta))}</p><p class="text-sm mt-1">${U.horario}</p>
-            <button id="pieWa" type="button" class="mt-5 btn-wa inline-flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-bold">${ic("fa-whatsapp", "text-lg", "fa-brands")} ${U.pieWa}</button></div>
+            <button id="pieWa" type="button" class="mt-5 btn-wa inline-flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-bold">${wa()} ${U.pieWa}</button></div>
         </div>
         <div class="max-w-6xl mx-auto px-4 sm:px-6 mt-12 pt-6 border-t border-white/10 text-xs flex flex-wrap gap-2 justify-between">
           <span>© ${new Date().getFullYear()} ${esc(NEGOCIO)} · ${U.derechos}</span><span>${L(SELLO.licensed[1])} · ${L(SELLO.estimados[1])}</span>
@@ -1299,7 +1503,8 @@
       const y = scrollY;
       document.documentElement.lang = LANG;
       document.title = `${NEGOCIO} | ${L(G.etiqueta)}`;
-      $("app").innerHTML = [hdr(U), hero(U), stats(U), nosotros(U), servicios(U), porQue(U), resenas(U), faq(U), cotizar(U), pie(U)].join("");
+      $("app").innerHTML = [hdr(U), hero(U), stats(U), nosotros(U), servicios(U), portafolio(U), porQue(U), resenas(U), faq(U), cotizar(U), pie(U)].join("");
+      pintarIconos();
       $("waFlotante").setAttribute("aria-label", U.waAria);
       if (primera) { primera = false; observar(); }
       else { document.querySelectorAll(".reveal").forEach(e => e.classList.add("in")); contar(true); scrollTo(0, y); }
@@ -1357,7 +1562,7 @@
         caja.classList.toggle("error", malo);
         if (malo && !primero) primero = caja;
       });
-      if (primero) { avisar(UI[LANG].completa); primero.scrollIntoView({ behavior: "smooth", block: "center" }); return false; }
+      if (primero) { avisar(UI[LANG].completa, false); primero.scrollIntoView({ behavior: "smooth", block: "center" }); return false; }
       return true;
     }
     function armarMensaje(tipo) {
@@ -1385,7 +1590,7 @@
       }
       progreso();
       $("cotizar").scrollIntoView({ behavior: "smooth" });
-      avisar(`✅ ${L(s.n)} ${UI[LANG].agregado}`);
+      avisar(`${L(s.n)} ${UI[LANG].agregado}`);
     }
 
     // ====== EVENTOS (una sola vez; la página se redibuja al cambiar de idioma) ======
@@ -1408,7 +1613,7 @@
       }
       if (t.closest("#btnEnviarWa")) { if (validar()) abrirWa(armarMensaje("whatsapp")); return; }
       if (t.closest("#btnLlamar")) { if (validar()) abrirWa(armarMensaje("llamada")); return; }
-      if (t.closest("#pieWa")) { abrirWa(UI[LANG].saludo(NEGOCIO)); return; }
+      if (t.closest("#pieWa") || t.closest("#faqWa")) { abrirWa(UI[LANG].saludo(NEGOCIO)); return; }
       if (t.closest("#waFlotante")) { $("cotizar").scrollIntoView({ behavior: "smooth" }); }
     });
     document.addEventListener("input", e => {
@@ -1419,12 +1624,14 @@
       limpiarError(id === "direccion" ? "entrega" : id);
       progreso();
     });
-    addEventListener("scroll", () => document.documentElement.classList.toggle("solid", scrollY > 40), { passive: true });
+    addEventListener("scroll", () => document.documentElement.classList.toggle("solid", scrollY > 10), { passive: true });
 
     let tAviso;
-    function avisar(txt) {
+    function avisar(txt, ok = true) {
       const a = $("aviso");
-      a.textContent = txt; a.classList.add("ver");
+      a.innerHTML = (ok ? CHECK_SVG : "") + "<span></span>";
+      a.querySelector("span").textContent = txt;
+      a.classList.add("ver");
       clearTimeout(tAviso); tAviso = setTimeout(() => a.classList.remove("ver"), 2000);
     }
 
