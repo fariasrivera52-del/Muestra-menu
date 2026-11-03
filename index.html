@@ -394,6 +394,23 @@
       padding: 10px 16px 20px;
     }
 
+    /* ---------- CINTILLA DEMO ---------- */
+    .cintilla {
+      display: none;
+      position: relative;
+      z-index: 30;
+      background: linear-gradient(90deg, var(--oro-2), var(--oro), var(--oro-2));
+      color: #111;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 16px;
+      line-height: 1.35;
+      box-shadow: 0 4px 18px rgba(255,194,41,0.35);
+    }
+    .cintilla b { font-weight: 800; }
+    .cintilla.ver { display: block; }
+
     .aviso {
       position: fixed;
       left: 50%;
@@ -415,10 +432,11 @@
   </style>
 </head>
 <body>
+  <div class="cintilla" id="cintilla"></div>
   <div class="app">
     <header>
       <div class="logo">🍔</div>
-      <h1>Burger Bros</h1>
+      <h1 id="nombreNegocio">Burger Bros</h1>
       <p class="slogan">Hamburguesas al carbón hechas con amor de hermanos</p>
       <div class="estado">
         <span class="punto"></span>
@@ -430,7 +448,7 @@
 
     <main id="menu"></main>
 
-    <footer>© Burger Bros · Precios en pesos mexicanos (MXN)</footer>
+    <footer>© <span id="nombreFooter">Burger Bros</span> · Precios en pesos mexicanos (MXN)</footer>
   </div>
 
   <div class="aviso" id="aviso"></div>
@@ -453,6 +471,24 @@
     // ====== CONFIGURACIÓN ======
     // Cambia este número por el WhatsApp del negocio (código de país + número, sin + ni espacios)
     const WHATSAPP = "5215512345678";
+
+    // ====== NOMBRE DINÁMICO (?cliente=Nombre+Del+Negocio) ======
+    const clienteURL = (new URLSearchParams(location.search).get("cliente") || "").trim().slice(0, 60);
+    const NEGOCIO = clienteURL || "Burger Bros";
+
+    if (clienteURL) {
+      document.title = `${NEGOCIO} | Menú`;
+      const h1 = document.getElementById("nombreNegocio");
+      h1.textContent = NEGOCIO;
+      // nombres largos: bajamos el tamaño para que quepa en el celular
+      if (NEGOCIO.length > 22) h1.style.fontSize = "38px";
+      else if (NEGOCIO.length > 14) h1.style.fontSize = "48px";
+      document.getElementById("nombreFooter").textContent = NEGOCIO;
+      const cint = document.getElementById("cintilla");
+      cint.innerHTML = "✨ Demostración interactiva preparada para <b></b>";
+      cint.querySelector("b").textContent = NEGOCIO;
+      cint.classList.add("ver");
+    }
 
     const CATEGORIAS = [
       { id: "hamburguesas", nombre: "Hamburguesas", icono: "🍔" },
@@ -597,7 +633,7 @@
       });
 
       const mensaje =
-        `🍔 *¡Hola Burger Bros!* Quiero hacer este pedido:\n\n` +
+        `🍔 *¡Hola ${NEGOCIO}!* Quiero hacer este pedido:\n\n` +
         lineas.join("\n") +
         `\n\n💰 *Total a pagar: ${pesos(total)} MXN*\n\n¡Gracias! 🙌`;
 
