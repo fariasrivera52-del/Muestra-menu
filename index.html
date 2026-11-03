@@ -1,29 +1,42 @@
 <!DOCTYPE html>
-<html lang="es-MX">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#0b0b0b" />
-  <title>Burger Bros | Menú</title>
+  <title>Catálogo digital</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* Los colores cambian según el giro (?giro=). Estos son los de hamburguesas (por defecto). */
+    /* Todos los colores cambian según el giro (?giro=). Estos son los de Burger Bros (links viejos sin giro). */
     :root {
-      --negro: #0b0b0b;
-      --negro-2: #151515;
-      --negro-3: #1f1f1f;
-      --oro: #ffc229;
-      --oro-2: #f5a400;
-      --rojo: #e63232;
-      --rojo-2: #b81d1d;
-      --brillo-1: rgba(230, 50, 50, 0.18);
-      --brillo-2: rgba(255, 194, 41, 0.12);
-      --verde: #25d366;
-      --verde-2: #1ebe5a;
+      --fondo: #0b0b0b;
+      --tarjeta: #1f1f1f;
+      --tarjeta-2: #151515;
+      --borde: #2a2a2a;
       --texto: #f5f5f5;
       --texto-2: #a8a8a8;
+      --acento: #ffc229;
+      --acento-2: #f5a400;
+      --sobre-acento: #111;
+      --sec: #e63232;
+      --sec-2: #b81d1d;
+      --sobre-sec: #fff;
+      --h1: #ffc229;
+      --h1-sombra: 3px 3px 0 #e63232, 0 8px 30px rgba(0,0,0,0.7);
+      --portada-velo: linear-gradient(180deg, rgba(11,11,11,0.35), #0b0b0b 95%);
+      --foto-velo: linear-gradient(180deg, transparent 55%, rgba(21,21,21,0.95));
+      --tabs-bg: rgba(11,11,11,0.88);
+      --barra-bg: rgba(20,20,20,0.92);
+      --control-bg: #0e0e0e;
+      --menos-bg: #2b2b2b;
+      --brillo-1: rgba(230,50,50,0.18);
+      --brillo-2: rgba(255,194,41,0.12);
+      --sombra: 0 10px 30px rgba(0,0,0,0.45);
+      --fuente-titulo: "Bebas Neue", sans-serif;
+      --verde: #25d366;
+      --verde-2: #1ebe5a;
       --radio: 18px;
     }
 
@@ -32,16 +45,17 @@
 
     body {
       font-family: "Poppins", system-ui, sans-serif;
-      background: var(--negro);
+      background: var(--fondo);
       color: var(--texto);
       min-height: 100vh;
-      padding-bottom: 140px;
+      padding-bottom: 150px;
       background-image:
         radial-gradient(circle at 10% 0%, var(--brillo-1), transparent 40%),
         radial-gradient(circle at 90% 10%, var(--brillo-2), transparent 40%);
       background-attachment: fixed;
     }
-    body.citas { padding-bottom: 190px; }
+    body.con-extra { padding-bottom: 200px; }
+    body.con-entrega { padding-bottom: 250px; }
 
     .app { max-width: 520px; margin: 0 auto; }
 
@@ -50,88 +64,57 @@
       display: none;
       position: relative;
       z-index: 30;
-      background: linear-gradient(90deg, var(--oro-2), var(--oro), var(--oro-2));
-      color: #111;
+      background: linear-gradient(90deg, var(--acento-2), var(--acento), var(--acento-2));
+      color: var(--sobre-acento);
       text-align: center;
       font-size: 13px;
       font-weight: 600;
       padding: 9px 16px;
       line-height: 1.35;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.25);
     }
     .cintilla b { font-weight: 800; }
     .cintilla.ver { display: block; }
 
     /* ---------- ENCABEZADO ---------- */
-    header {
-      position: relative;
-      padding: 28px 16px 22px;
-      text-align: center;
-      overflow: hidden;
-      isolation: isolate;
-    }
-    .portada {
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background-size: cover;
-      background-position: center;
-    }
-    .portada::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(11,11,11,0.35), var(--negro) 95%);
-    }
+    header { position: relative; padding: 28px 16px 22px; text-align: center; overflow: hidden; isolation: isolate; }
+    .portada { position: absolute; inset: 0; z-index: -1; background-size: cover; background-position: center; }
+    .portada::after { content: ""; position: absolute; inset: 0; background: var(--portada-velo); }
 
     .logo {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 78px;
-      height: 78px;
-      border-radius: 50%;
-      background: linear-gradient(145deg, var(--oro), var(--oro-2));
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 78px; height: 78px; border-radius: 50%;
+      background: linear-gradient(145deg, var(--acento), var(--acento-2));
       font-size: 40px;
-      box-shadow: 0 0 0 5px rgba(255,255,255,0.08), 0 10px 30px rgba(0,0,0,0.45);
+      box-shadow: 0 0 0 5px rgba(255,255,255,0.12), 0 10px 30px rgba(0,0,0,0.3);
       margin-bottom: 10px;
     }
 
     h1 {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 62px;
-      letter-spacing: 3px;
-      line-height: 1;
-      color: var(--oro);
-      text-shadow: 3px 3px 0 var(--rojo), 0 8px 30px rgba(0,0,0,0.7);
+      font-family: var(--fuente-titulo);
+      font-size: 58px;
+      letter-spacing: 2px;
+      line-height: 1.05;
+      color: var(--h1);
+      text-shadow: var(--h1-sombra);
       overflow-wrap: anywhere;
     }
+    body.serif h1 { letter-spacing: 0; font-size: 44px; }
 
-    .slogan { font-size: 14px; color: #e8e8e8; margin-top: 6px; font-weight: 500; }
+    .slogan { font-size: 14px; color: var(--texto); opacity: .9; margin-top: 6px; font-weight: 500; }
 
     .estado {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 16px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: rgba(37, 211, 102, 0.12);
-      border: 1px solid rgba(37, 211, 102, 0.45);
-      font-size: 13px;
-      font-weight: 600;
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-top: 16px; padding: 10px 16px; border-radius: 999px;
+      background: rgba(37, 211, 102, 0.14);
+      border: 1px solid rgba(37, 211, 102, 0.5);
+      font-size: 13px; font-weight: 600;
       backdrop-filter: blur(8px);
     }
-    .estado b { color: var(--verde); }
+    .estado b { color: #14a650; }
+    body.oscuro .estado b { color: var(--verde); }
 
-    .punto {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--verde);
-      animation: latido 1.6s infinite;
-      flex-shrink: 0;
-    }
+    .punto { width: 10px; height: 10px; border-radius: 50%; background: var(--verde); animation: latido 1.6s infinite; flex-shrink: 0; }
     @keyframes latido {
       0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.7); }
       70% { box-shadow: 0 0 0 10px rgba(37,211,102,0); }
@@ -140,179 +123,107 @@
 
     /* ---------- CATEGORÍAS ---------- */
     .tabs {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      display: flex;
-      gap: 8px;
-      padding: 12px 16px;
-      background: rgba(11,11,11,0.88);
+      position: sticky; top: 0; z-index: 20;
+      display: flex; gap: 8px; padding: 12px 16px;
+      background: var(--tabs-bg);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid #222;
-      overflow-x: auto;
-      scrollbar-width: none;
+      border-bottom: 1px solid var(--borde);
+      overflow-x: auto; scrollbar-width: none;
     }
     .tabs::-webkit-scrollbar { display: none; }
-
     .tab {
-      flex: 1;
-      white-space: nowrap;
-      border: 1px solid #333;
-      background: var(--negro-2);
+      flex: 1 0 auto; white-space: nowrap;
+      border: 1px solid var(--borde);
+      background: var(--tarjeta);
       color: var(--texto);
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-family: inherit;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all .2s;
+      padding: 10px 14px; border-radius: 999px;
+      font-family: inherit; font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: all .2s;
     }
     .tab.activa {
-      background: linear-gradient(145deg, var(--oro), var(--oro-2));
-      color: #111;
+      background: linear-gradient(145deg, var(--acento), var(--acento-2));
+      color: var(--sobre-acento);
       border-color: transparent;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
     }
 
     /* ---------- SECCIONES ---------- */
     main { padding: 8px 16px 0; }
     section { scroll-margin-top: 70px; margin-top: 22px; }
-
     .titulo-cat {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 32px;
-      letter-spacing: 1.5px;
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--fuente-titulo);
+      font-size: 32px; letter-spacing: 1.5px;
       margin-bottom: 14px;
     }
-    .titulo-cat::after {
-      content: "";
-      flex: 1;
-      height: 3px;
-      border-radius: 3px;
-      background: linear-gradient(90deg, var(--rojo), transparent);
-    }
+    body.serif .titulo-cat { font-size: 26px; letter-spacing: 0; }
+    .titulo-cat::after { content: ""; flex: 1; height: 3px; border-radius: 3px; background: linear-gradient(90deg, var(--sec), transparent); }
 
     /* ---------- TARJETA ---------- */
     .card {
       position: relative;
-      background: linear-gradient(160deg, var(--negro-3), var(--negro-2));
-      border: 1px solid #2a2a2a;
+      background: linear-gradient(160deg, var(--tarjeta), var(--tarjeta-2));
+      border: 1px solid var(--borde);
       border-radius: var(--radio);
       overflow: hidden;
       margin-bottom: 18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+      box-shadow: var(--sombra);
       transition: border-color .25s;
     }
-    .card.en-pedido { border-color: var(--oro); }
+    .card.en-pedido { border-color: var(--acento); box-shadow: 0 0 0 1px var(--acento), var(--sombra); }
 
-    .foto { position: relative; height: 190px; background: linear-gradient(135deg, var(--negro-3), var(--negro-2)); }
+    .foto { position: relative; height: 190px; background: var(--tarjeta-2); }
     .foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .foto::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 55%, rgba(21,21,21,0.95));
-    }
+    .foto::after { content: ""; position: absolute; inset: 0; background: var(--foto-velo); }
 
     .etiqueta {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      z-index: 2;
-      background: var(--rojo);
-      color: #fff;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .5px;
-      padding: 5px 10px;
-      border-radius: 999px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      position: absolute; top: 12px; left: 12px; z-index: 2;
+      background: var(--sec); color: var(--sobre-sec);
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+      padding: 5px 10px; border-radius: 999px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
     }
-
     .badge-cant {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      z-index: 2;
-      min-width: 34px;
-      height: 34px;
-      padding: 0 8px;
-      border-radius: 999px;
-      background: var(--oro);
-      color: #111;
-      font-weight: 700;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      font-size: 15px;
+      position: absolute; top: 12px; right: 12px; z-index: 2;
+      min-width: 34px; height: 34px; padding: 0 8px; border-radius: 999px;
+      background: var(--acento); color: var(--sobre-acento);
+      font-weight: 700; display: none; align-items: center; justify-content: center; font-size: 15px;
     }
     .card.en-pedido .badge-cant { display: flex; }
 
     .info { padding: 4px 16px 16px; }
-    .info h3 { font-size: 19px; font-weight: 700; margin-bottom: 4px; }
+    .info h3 { font-size: 19px; font-weight: 700; margin: 6px 0 4px; }
     .info p { font-size: 13.5px; color: var(--texto-2); line-height: 1.5; }
 
     .fila { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; gap: 10px; }
-
-    .precio {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 34px;
-      color: var(--oro);
-      letter-spacing: 1px;
-      line-height: 1;
-    }
-    .precio small { font-family: "Poppins"; font-size: 12px; color: var(--texto-2); margin-left: 2px; }
+    .precio { font-family: "Bebas Neue", sans-serif; font-size: 34px; color: var(--acento-2); letter-spacing: 1px; line-height: 1; }
+    body.oscuro .precio { color: var(--acento); }
+    .precio small { font-family: "Poppins"; font-size: 12px; color: var(--texto-2); margin-left: 3px; letter-spacing: 0; }
     .precio .desde { display: block; font-family: "Poppins"; font-size: 11px; color: var(--texto-2); letter-spacing: 0; margin: 0 0 2px; }
 
-    .contador {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      background: #0e0e0e;
-      border: 1px solid #333;
-      border-radius: 999px;
-      padding: 4px;
-    }
+    .contador { display: flex; align-items: center; gap: 4px; background: var(--control-bg); border: 1px solid var(--borde); border-radius: 999px; padding: 4px; }
     .btn-cant {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: none;
-      font-size: 24px;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform .12s, opacity .2s;
-      line-height: 1;
+      width: 40px; height: 40px; border-radius: 50%; border: none;
+      font-size: 24px; font-weight: 700; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform .12s, opacity .2s; line-height: 1;
     }
     .btn-cant:active { transform: scale(0.88); }
-    .menos { background: #2b2b2b; color: var(--texto); }
+    .menos { background: var(--menos-bg); color: var(--texto); }
     .menos:disabled { opacity: .35; cursor: default; }
-    .mas { background: linear-gradient(145deg, var(--rojo), var(--rojo-2)); color: #fff; box-shadow: 0 4px 14px rgba(0,0,0,0.4); }
+    .mas { background: linear-gradient(145deg, var(--sec), var(--sec-2)); color: var(--sobre-sec); box-shadow: 0 4px 14px rgba(0,0,0,0.25); }
     .cant { min-width: 30px; text-align: center; font-weight: 700; font-size: 17px; }
 
     /* ---------- BARRA FLOTANTE ---------- */
     .barra {
-      position: fixed;
-      left: 50%;
-      bottom: 12px;
-      transform: translateX(-50%);
-      width: calc(100% - 24px);
-      max-width: 496px;
-      z-index: 50;
-      background: rgba(20,20,20,0.92);
+      position: fixed; left: 50%; bottom: 12px; transform: translateX(-50%);
+      width: calc(100% - 24px); max-width: 496px; z-index: 50;
+      background: var(--barra-bg);
       backdrop-filter: blur(14px);
-      border: 1px solid #333;
+      border: 1px solid var(--borde);
       border-radius: 22px;
       padding: 12px;
-      box-shadow: 0 -4px 40px rgba(0,0,0,0.6);
+      box-shadow: 0 -4px 40px rgba(0,0,0,0.3);
       padding-bottom: calc(12px + env(safe-area-inset-bottom));
     }
     .resumen { display: flex; align-items: center; justify-content: space-between; padding: 0 6px 10px; }
@@ -320,77 +231,57 @@
     .resumen .items b { color: var(--texto); }
     .total { text-align: right; }
     .total span { font-size: 12px; color: var(--texto-2); display: block; }
-    .total strong {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 32px;
-      color: var(--oro);
-      letter-spacing: 1px;
-      line-height: 1;
-      display: inline-block;
-    }
+    .total strong { font-family: "Bebas Neue", sans-serif; font-size: 32px; color: var(--acento-2); letter-spacing: 1px; line-height: 1; display: inline-block; }
+    body.oscuro .total strong { color: var(--acento); }
     .total strong.pop { animation: pop .3s ease; }
     @keyframes pop { 50% { transform: scale(1.18); } }
 
-    .horario { display: none; margin: 0 0 10px; }
-    body.citas .horario { display: block; }
-    .horario input {
-      width: 100%;
-      padding: 11px 14px;
-      border-radius: 12px;
-      border: 1px solid #333;
-      background: #0e0e0e;
-      color: var(--texto);
-      font-family: inherit;
-      font-size: 14px;
-      outline: none;
+    .extra { display: none; margin: 0 0 10px; }
+    body.con-extra .extra { display: block; }
+    .campo {
+      width: 100%; padding: 11px 14px; border-radius: 12px;
+      border: 1px solid var(--borde); background: var(--control-bg); color: var(--texto);
+      font-family: inherit; font-size: 14px; outline: none;
     }
-    .horario input:focus { border-color: var(--oro); }
+    .campo::placeholder { color: var(--texto-2); }
+    .campo:focus { border-color: var(--acento); }
+
+    .entrega { display: none; gap: 8px; margin: 0 0 10px; }
+    body.con-entrega .entrega { display: flex; }
+    .opcion {
+      flex: 1; padding: 10px; border-radius: 12px; cursor: pointer;
+      border: 1px solid var(--borde); background: var(--control-bg); color: var(--texto);
+      font-family: inherit; font-size: 14px; font-weight: 600; transition: all .2s;
+    }
+    .opcion.activa { background: linear-gradient(145deg, var(--acento), var(--acento-2)); color: var(--sobre-acento); border-color: transparent; }
+    .direccion { display: none; margin: 0 0 10px; }
+    body.delivery .direccion { display: block; }
 
     .btn-wa {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      border: none;
-      border-radius: 16px;
-      padding: 15px;
-      font-family: inherit;
-      font-size: 16px;
-      font-weight: 700;
-      color: #fff;
+      width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
+      border: none; border-radius: 16px; padding: 15px;
+      font-family: inherit; font-size: 16px; font-weight: 700; color: #fff;
       background: linear-gradient(145deg, var(--verde), var(--verde-2));
       box-shadow: 0 8px 24px rgba(37,211,102,0.35);
-      cursor: pointer;
-      transition: transform .12s;
+      cursor: pointer; transition: transform .12s;
     }
     .btn-wa:active { transform: scale(0.97); }
-    .btn-wa:disabled { background: #2b2b2b; color: #777; box-shadow: none; cursor: not-allowed; }
+    .btn-wa:disabled { background: var(--menos-bg); color: var(--texto-2); box-shadow: none; cursor: not-allowed; }
     .btn-wa svg { width: 22px; height: 22px; fill: currentColor; flex-shrink: 0; }
 
-    footer { text-align: center; font-size: 12px; color: #666; padding: 10px 16px 20px; }
+    footer { text-align: center; font-size: 12px; color: var(--texto-2); padding: 10px 16px 20px; }
 
     .aviso {
-      position: fixed;
-      left: 50%;
-      bottom: 150px;
-      transform: translateX(-50%) translateY(20px);
-      background: var(--oro);
-      color: #111;
-      font-weight: 600;
-      font-size: 13px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      opacity: 0;
-      pointer-events: none;
-      transition: all .3s;
-      z-index: 60;
-      white-space: nowrap;
-      max-width: calc(100% - 32px);
-      overflow: hidden;
-      text-overflow: ellipsis;
+      position: fixed; left: 50%; bottom: 160px; transform: translateX(-50%) translateY(20px);
+      background: var(--acento); color: var(--sobre-acento);
+      font-weight: 600; font-size: 13px; padding: 10px 16px; border-radius: 999px;
+      opacity: 0; pointer-events: none; transition: all .3s; z-index: 60;
+      white-space: nowrap; max-width: calc(100% - 32px); overflow: hidden; text-overflow: ellipsis;
     }
-    body.citas .aviso { bottom: 200px; }
+    body.con-extra .aviso { bottom: 210px; }
+    body.con-entrega .aviso { bottom: 225px; }
+    body.con-entrega.delivery .aviso { bottom: 280px; }
+    body.con-entrega.delivery { padding-bottom: 300px; }
     .aviso.ver { opacity: 1; transform: translateX(-50%) translateY(0); }
   </style>
 </head>
@@ -399,18 +290,18 @@
   <div class="app">
     <header>
       <div class="portada" id="portada"></div>
-      <div class="logo" id="logo">🍔</div>
-      <h1 id="nombreNegocio">Burger Bros</h1>
+      <div class="logo" id="logo"></div>
+      <h1 id="nombreNegocio"></h1>
       <p class="slogan" id="slogan"></p>
       <div class="estado">
         <span class="punto"></span>
-        <span id="estadoTxt"><b>Abierto ahora</b> · Pedidos sin esperas</span>
+        <span id="estadoTxt"></span>
       </div>
     </header>
 
     <nav class="tabs" id="tabs"></nav>
     <main id="menu"></main>
-    <footer>© <span id="nombreFooter">Burger Bros</span> · Precios en pesos mexicanos (MXN)</footer>
+    <footer>© <span id="nombreFooter"></span> · <span id="monedaTxt"></span></footer>
   </div>
 
   <div class="aviso" id="aviso"></div>
@@ -419,34 +310,219 @@
     <div class="resumen">
       <div class="items" id="items"></div>
       <div class="total">
-        <span id="totalLbl">Total a pagar</span>
+        <span id="totalLbl">Total</span>
         <strong id="total">$0</strong>
       </div>
     </div>
-    <div class="horario">
-      <input id="horario" placeholder="📅 ¿Qué día y hora prefieres? (opcional)" maxlength="60" />
+    <div class="entrega" id="entrega">
+      <button class="opcion activa" data-entrega="Pick-up">🛍️ Pick-up</button>
+      <button class="opcion" data-entrega="Delivery">🛵 Delivery</button>
     </div>
+    <div class="direccion"><input class="campo" id="direccion" placeholder="📍 Dirección de entrega" maxlength="120" /></div>
+    <div class="extra"><input class="campo" id="extra" maxlength="100" /></div>
     <button class="btn-wa" id="btnWa" disabled>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.160-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.470-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.38 9.38 0 0 1-1.44-5.01c0-5.19 4.23-9.42 9.43-9.42 2.52 0 4.88.98 6.66 2.76a9.36 9.36 0 0 1 2.76 6.67c0 5.2-4.23 9.42-9.42 9.42M20.06 3.98A11.3 11.3 0 0 0 12.05.67C5.8.67.7 5.76.7 12.02c0 2 .52 3.95 1.52 5.67L.6 23.33l5.77-1.51a11.3 11.3 0 0 0 5.67 1.45h.01c6.25 0 11.34-5.09 11.35-11.35 0-3.03-1.18-5.88-3.33-8.02"/></svg>
-      <span id="btnWaTxt">Enviar pedido por WhatsApp</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.38 9.38 0 0 1-1.44-5.01c0-5.19 4.23-9.42 9.43-9.42 2.52 0 4.88.98 6.66 2.76a9.36 9.36 0 0 1 2.76 6.67c0 5.2-4.23 9.42-9.42 9.42M20.06 3.98A11.3 11.3 0 0 0 12.05.67C5.8.67.7 5.76.7 12.02c0 2 .52 3.950 1.52 5.67L.6 23.33l5.77-1.51a11.3 11.3 0 0 0 5.67 1.45h.01c6.25 0 11.34-5.09 11.35-11.35 0-3.03-1.18-5.88-3.33-8.02"/></svg>
+      <span id="btnWaTxt"></span>
     </button>
   </div>
 
   <script>
     // ====== CONFIGURACIÓN ======
     // Cambia este número por el WhatsApp del negocio (código de país + número, sin + ni espacios)
-    const WHATSAPP = "5215512345678";
+    const WHATSAPP = "13055550123";
 
-    const foto = id => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=800&q=75`;
+    const foto = (id, w = 800) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=75`;
+
+    // ====== TEMAS ======
+    const TEMAS = {
+      // Links viejos de México (sin ?giro=) — se queda como estaba
+      burger: { oscuro: true, fondo: "#0b0b0b", tarjeta: "#1f1f1f", tarjeta2: "#151515", borde: "#2a2a2a", texto: "#f5f5f5", texto2: "#a8a8a8",
+        acento: "#ffc229", acento2: "#f5a400", sobreAcento: "#111", sec: "#e63232", sec2: "#b81d1d", sobreSec: "#fff",
+        h1: "#ffc229", h1Sombra: "3px 3px 0 #e63232, 0 8px 30px rgba(0,0,0,.7)", brillo1: "rgba(230,50,50,.18)", brillo2: "rgba(255,194,41,.12)" },
+      // Cleaning / Landscaping / Handyman — limpio azul y blanco
+      azul: { oscuro: false, fondo: "#f2f6fb", tarjeta: "#ffffff", tarjeta2: "#f8fbff", borde: "#d9e5f2", texto: "#0e2a47", texto2: "#5a7089",
+        acento: "#1f6feb", acento2: "#1558c0", sobreAcento: "#fff", sec: "#0ea5e9", sec2: "#0284c7", sobreSec: "#fff",
+        h1: "#0e2a47", h1Sombra: "0 2px 18px rgba(255,255,255,.9)", brillo1: "rgba(31,111,235,.10)", brillo2: "rgba(14,165,233,.10)" },
+      // Salones, uñas y lashes — crema y dorado
+      crema: { oscuro: false, serif: true, fondo: "#f8f3ea", tarjeta: "#fffdf8", tarjeta2: "#fbf6ee", borde: "#e9dcc6", texto: "#3b2f23", texto2: "#8a7863",
+        acento: "#c29b52", acento2: "#9c7a37", sobreAcento: "#fff", sec: "#b08a45", sec2: "#8a6a2e", sobreSec: "#fff",
+        h1: "#8a6a2e", h1Sombra: "0 2px 18px rgba(255,253,248,.9)", brillo1: "rgba(194,155,82,.14)", brillo2: "rgba(232,200,170,.18)" },
+      // Food trucks, taquerías y restaurantes — oscuro y naranja
+      naranja: { oscuro: true, fondo: "#0d0907", tarjeta: "#1d1510", tarjeta2: "#15100c", borde: "#33241a", texto: "#f8efe7", texto2: "#b6a393",
+        acento: "#ff8a1f", acento2: "#f26b0c", sobreAcento: "#1a0e05", sec: "#ff4d1a", sec2: "#d63a0c", sobreSec: "#fff",
+        h1: "#ff8a1f", h1Sombra: "3px 3px 0 #b8300a, 0 8px 30px rgba(0,0,0,.7)", brillo1: "rgba(255,77,26,.18)", brillo2: "rgba(255,138,31,.12)" },
+      // Barberías latinas — negro y dorado
+      dorado: { oscuro: true, fondo: "#0a0a0a", tarjeta: "#181715", tarjeta2: "#111110", borde: "#2c2820", texto: "#f4efe5", texto2: "#a69e8e",
+        acento: "#d4af37", acento2: "#b8932a", sobreAcento: "#111", sec: "#d4af37", sec2: "#a8842c", sobreSec: "#111",
+        h1: "#d4af37", h1Sombra: "0 2px 0 #5c4a14, 0 8px 30px rgba(0,0,0,.8)", brillo1: "rgba(212,175,55,.12)", brillo2: "rgba(212,175,55,.08)" },
+      // Custom cakes — repostería fina, rosa empolvado y chocolate
+      rosa: { oscuro: false, serif: true, fondo: "#fdf5f3", tarjeta: "#ffffff", tarjeta2: "#fff9f8", borde: "#f0dcd7", texto: "#4a2a2f", texto2: "#937177",
+        acento: "#c96f87", acento2: "#ad5570", sobreAcento: "#fff", sec: "#7a4b3a", sec2: "#5e382b", sobreSec: "#fff",
+        h1: "#7a4b3a", h1Sombra: "0 2px 18px rgba(255,255,255,.9)", brillo1: "rgba(201,111,135,.12)", brillo2: "rgba(122,75,58,.08)" }
+    };
 
     // ====== GIROS ======
-    // tipo "pedido" → Enviar pedido por WhatsApp · tipo "cita" → Agendar cita por WhatsApp
+    // accion: texto del botón · saludo: primera línea del mensaje · extra: casilla opcional en la barra
     const GIROS = {
+      servicios: {
+        tema: "azul", moneda: "USD", nombre: "Sparkle Pro Cleaning", logo: "🧽", carta: "Servicios",
+        slogan: "Cleaning · Landscaping · Handyman — tu casa impecable",
+        estado: "Disponibles esta semana · Estimados gratis",
+        portada: "1513694203232-719a280e022f",
+        accion: "Solicitar estimado por WhatsApp", totalLbl: "Estimado", saludo: "Quiero solicitar un estimado para:",
+        unidad: ["servicio", "servicios"], extra: "📍 ZIP code y día preferido (opcional)", extraLbl: "📍 ZIP / día preferido",
+        categorias: [
+          { id: "residencial", nombre: "Residencial", icono: "🏠" },
+          { id: "profunda", nombre: "Limpieza profunda", icono: "✨" },
+          { id: "habitacion", nombre: "Por habitación", icono: "🚪" },
+          { id: "extras", nombre: "Extras", icono: "➕" }
+        ],
+        productos: [
+          { cat: "residencial", nombre: "Limpieza regular", precio: 129, desde: true, etiqueta: "Más pedido", img: "1581578731548-c64695cc6952",
+            desc: "Casa o apartamento de hasta 2 recámaras y 2 baños: polvo, pisos, cocina, baños y recámaras. Productos incluidos." },
+          { cat: "residencial", nombre: "Limpieza recurrente", precio: 109, etiqueta: "Cada 2 semanas", img: "1527515637462-cff94eecc1ac",
+            desc: "Tu casa siempre limpia con visitas cada 2 semanas y el mismo equipo de confianza. Precio por visita." },
+          { cat: "profunda", nombre: "Deep cleaning completo", precio: 229, desde: true, etiqueta: "A fondo", img: "1628177142898-93e36e4e3a50",
+            desc: "Limpieza detallada de rincones, zoclos, puertas, lámparas, gabinetes por fuera y sarro en baños. Ideal para empezar." },
+          { cat: "profunda", nombre: "Move-in / Move-out", precio: 279, desde: true, etiqueta: "Mudanzas", img: "1600585154340-be6161a56a0c",
+            desc: "Dejamos la casa lista para entregar o estrenar: gabinetes por dentro, electrodomésticos, closets y ventanas." },
+          { cat: "habitacion", nombre: "Cocina a fondo", precio: 69, etiqueta: "Brillante", img: "1556911220-bff31c812dba",
+            desc: "Desengrasado de estufa, campana, cubiertas, fregadero, frentes de gabinetes y piso." },
+          { cat: "habitacion", nombre: "Baño completo", precio: 45, etiqueta: "Sin sarro", img: "1584622650111-993a426fbf0a",
+            desc: "Regadera, tina, azulejos, sanitario, lavabo y espejos desinfectados y sin sarro." },
+          { cat: "extras", nombre: "Interior del refrigerador", precio: 35, etiqueta: "Extra", img: "1571175443880-49e1d25b2bc5",
+            desc: "Vaciamos, lavamos repisas y cajones, desinfectamos y acomodamos todo de nuevo." },
+          { cat: "extras", nombre: "Interior del horno", precio: 35, etiqueta: "Extra", img: "1574269909862-7e1d70bb8078",
+            desc: "Quitamos grasa y residuos quemados de paredes, rejillas y puerta del horno." },
+          { cat: "extras", nombre: "Lavandería y doblado", precio: 25, etiqueta: "Por carga", img: "1610557892470-55d9e80c0bce",
+            desc: "Lavamos, secamos y doblamos tu ropa mientras limpiamos la casa. Precio por carga." }
+        ]
+      },
+
+      estetica: {
+        tema: "crema", moneda: "USD", nombre: "Glow Beauty Studio", logo: "💅", carta: "Servicios",
+        slogan: "Nails · Lashes · Brows · Facials",
+        estado: "Citas disponibles hoy",
+        portada: "1560750588-73207b1ef5b8",
+        accion: "Agendar cita por WhatsApp", totalLbl: "Total estimado", saludo: "Quiero agendar una cita para:",
+        unidad: ["servicio", "servicios"], extra: "📅 ¿Qué día y hora prefieres? (opcional)", extraLbl: "📅 Me gustaría",
+        categorias: [
+          { id: "unas", nombre: "Uñas", icono: "💅" },
+          { id: "lashes", nombre: "Pestañas y Cejas", icono: "👁️" },
+          { id: "faciales", nombre: "Faciales", icono: "✨" }
+        ],
+        productos: [
+          { cat: "unas", nombre: "Acrylic full set", precio: 55, etiqueta: "💖 Favorito", img: "1519014816548-bf5fe059798b",
+            desc: "Juego completo de uñas acrílicas con la forma y el largo que quieras, más diseño sencillo incluido." },
+          { cat: "unas", nombre: "Gel manicure", precio: 35, etiqueta: "Dura 3 semanas", img: "1607779097040-26e80aa78e66",
+            desc: "Limado, cutícula, hidratación y esmalte en gel con brillo espejo que no se descarapela." },
+          { cat: "lashes", nombre: "Lash extensions clásicas", precio: 120, etiqueta: "Full set", img: "1631214540553-ff044a3ff1d4",
+            desc: "Extensiones pelo a pelo para una mirada natural y definida. Retoque disponible a las 2-3 semanas." },
+          { cat: "lashes", nombre: "Lash lift + tinte", precio: 75, etiqueta: "Natural", img: "1487412947147-5cebf100ffc2",
+            desc: "Rizado y tinte de tus pestañas naturales. Efecto rímel por hasta 8 semanas, sin extensiones." },
+          { cat: "lashes", nombre: "Brow lamination + diseño", precio: 65, etiqueta: "Tendencia", img: "1522335789203-aabd1fc54bc9",
+            desc: "Laminado, diseño con cera y tinte para cejas peinadas, llenas y perfectas por semanas." },
+          { cat: "faciales", nombre: "Hydrafacial", precio: 150, etiqueta: "Glow", img: "1632345031435-8727f6897d53",
+            desc: "Limpieza profunda, extracción e hidratación intensa con sueros. Piel luminosa desde la primera sesión." },
+          { cat: "faciales", nombre: "Facial hidratante", precio: 85, etiqueta: "Relajante", img: "1616394584738-fc6e612e71b9",
+            desc: "Limpieza, exfoliación, mascarilla y masaje facial. Tu piel fresca, suave y descansada." }
+        ]
+      },
+
+      comida: {
+        tema: "naranja", moneda: "USD", nombre: "Sabor Latino", logo: "🌮", carta: "Menú",
+        slogan: "Food truck · Tacos, birria y antojitos",
+        estado: "Abierto ahora · Pick-up o Delivery",
+        portada: "1586511925558-a4c6376fe65f",
+        accion: "Enviar pedido por WhatsApp", totalLbl: "Total a pagar", saludo: "Quiero hacer este pedido:",
+        unidad: ["producto", "productos"], entrega: true,
+        categorias: [
+          { id: "combos", nombre: "Combos", icono: "🍽️" },
+          { id: "platillos", nombre: "Platillos", icono: "🌮" },
+          { id: "bebidas", nombre: "Bebidas", icono: "🥤" }
+        ],
+        productos: [
+          { cat: "combos", nombre: "Combo 3 tacos + bebida", precio: 12.99, etiqueta: "La favorita", img: "1551504734-5ee1c4a1479b",
+            desc: "Tres tacos de asada, pastor o pollo con cebolla, cilantro y salsa de la casa, más una bebida." },
+          { cat: "combos", nombre: "Combo burrito + papas", precio: 14.99, etiqueta: "Llenador", img: "1626700051175-6818013e1d4f",
+            desc: "Burrito grande de tu carne favorita con arroz, frijoles y queso, papas fritas y bebida." },
+          { cat: "platillos", nombre: "Quesabirria (3) + consomé", precio: 15.99, etiqueta: "🔥 Top ventas", img: "1599974579688-8dbdd335c77f",
+            desc: "Tres tacos de birria de res doraditos con queso derretido y su consomé calientito para remojar." },
+          { cat: "platillos", nombre: "Chilaquiles con huevo", precio: 12.49, etiqueta: "Desayuno", img: "1640719028782-8230f1bdc42a",
+            desc: "Totopos bañados en salsa roja o verde, con huevo, crema, queso fresco, cebolla y aguacate." },
+          { cat: "platillos", nombre: "Nachos supremos", precio: 11.99, etiqueta: "Para compartir", img: "1513456852971-30c0b8199d4d",
+            desc: "Totopos con queso fundido, carne, frijoles, pico de gallo, jalapeños y crema." },
+          { cat: "bebidas", nombre: "Agua fresca 32 oz", precio: 4.99, etiqueta: "Natural", img: "1551024709-8f23befc6f87",
+            desc: "Horchata, jamaica o limón con chía, preparadas al día y servidas bien frías." },
+          { cat: "bebidas", nombre: "Soda", precio: 2.99, etiqueta: "Bien fría", img: "1622483767028-3f66f32aef97",
+            desc: "Coca-Cola, Jarritos o Sidral. Lata o botella bien fría." }
+        ]
+      },
+
+      barberia: {
+        tema: "dorado", moneda: "USD", nombre: "El Patrón Barbershop", logo: "💈", carta: "Servicios",
+        slogan: "Cortes con estilo, navaja y buena plática",
+        estado: "Abierto ahora · Reserva tu turno sin esperar",
+        portada: "1585747860715-2ba37e788b70",
+        accion: "Reservar turno por WhatsApp", totalLbl: "Total estimado", saludo: "Quiero reservar un turno para:",
+        unidad: ["servicio", "servicios"], extra: "📅 Día y hora para tu turno (opcional)", extraLbl: "📅 Me gustaría",
+        categorias: [
+          { id: "cortes", nombre: "Cortes", icono: "✂️" },
+          { id: "barba", nombre: "Barba y Cejas", icono: "🧔" },
+          { id: "paquetes", nombre: "Paquetes", icono: "💈" }
+        ],
+        productos: [
+          { cat: "cortes", nombre: "Fade / Degradado", precio: 35, etiqueta: "🔥 El más pedido", img: "1622286342621-4bd786c2447c",
+            desc: "Low, mid o high fade con acabado perfecto y diseño de línea si lo quieres. Detalle total." },
+          { cat: "cortes", nombre: "Corte clásico", precio: 28, etiqueta: "Tradicional", img: "1593702288056-7927b442d0fa",
+            desc: "Corte con tijera y máquina a tu gusto, lavado y peinado con producto." },
+          { cat: "barba", nombre: "Perfilado de barba", precio: 20, etiqueta: "Precisión", img: "1599351431202-1e0f0137899a",
+            desc: "Recorte, perfilado con navaja, toalla caliente y aceite para barba." },
+          { cat: "barba", nombre: "Cejas con navaja", precio: 10, etiqueta: "Detalle", img: "1503951914875-452162b0f3f1",
+            desc: "Limpieza y perfilado de cejas con navaja para una mirada más definida." },
+          { cat: "paquetes", nombre: "Corte + Barba", precio: 50, etiqueta: "Ahorra $5", img: "1622287162716-f311baa1a2b8",
+            desc: "Tu fade o corte favorito más perfilado de barba con navaja. El combo completo." },
+          { cat: "paquetes", nombre: "Paquete VIP", precio: 70, etiqueta: "Experiencia", img: "1605497788044-5a32c7078486",
+            desc: "Corte, barba, cejas, mascarilla negra, lavado con masaje y bebida de cortesía." }
+        ]
+      },
+
+      pasteleria: {
+        tema: "rosa", moneda: "USD", nombre: "Dulce Arte Cakes", logo: "🎂", carta: "Catálogo",
+        slogan: "Custom cakes y postres para tus eventos",
+        estado: "Aceptando pedidos para eventos",
+        portada: "1562777717-dc6984f65a63",
+        accion: "Cotizar pedido por WhatsApp", totalLbl: "Total estimado", saludo: "Quiero cotizar este pedido:",
+        unidad: ["producto", "productos"], extra: "🎉 Fecha del evento y # de invitados (opcional)", extraLbl: "🎉 Evento",
+        categorias: [
+          { id: "custom", nombre: "Custom Cakes", icono: "🎂" },
+          { id: "eventos", nombre: "Para eventos", icono: "🎉" },
+          { id: "postres", nombre: "Postres", icono: "🍰" }
+        ],
+        productos: [
+          { cat: "custom", nombre: "Custom cake 1 piso", precio: 95, desde: true, etiqueta: "20 porciones", img: "1627834377411-8da5f4f09de8",
+            desc: "Pastel personalizado con el tema, colores y sabor que quieras: cumpleaños, baby shower o graduación." },
+          { cat: "custom", nombre: "Pastel de 2 o 3 pisos", precio: 280, desde: true, etiqueta: "Bodas · XV años", img: "1535254973040-607b474cb50d",
+            desc: "Pastel de varios pisos con flores, fondant o buttercream para bodas, quinceañeras y eventos grandes." },
+          { cat: "eventos", nombre: "Mesa de postres (50 pzas)", precio: 220, etiqueta: "Dessert table", img: "1488477181946-6428a0291777",
+            desc: "Shots de postre, mini cheesecakes, brownies y vasitos de fruta con la paleta de colores de tu evento." },
+          { cat: "eventos", nombre: "Cupcakes personalizados (12)", precio: 45, etiqueta: "Temáticos", img: "1614707267537-b85aaf00c4b7",
+            desc: "Una docena de cupcakes decorados con el tema de tu fiesta. Sabores: vainilla, chocolate o red velvet." },
+          { cat: "postres", nombre: "Cheesecake entero", precio: 48, etiqueta: "Cremoso", img: "1533134242443-d4fd215305ad",
+            desc: "Cheesecake estilo New York con topping de mora azul, fresa o cajeta. 12 rebanadas." },
+          { cat: "postres", nombre: "Galletas decoradas (12)", precio: 40, etiqueta: "Para regalar", img: "1558961363-fa8fdf82db35",
+            desc: "Galletas de mantequilla decoradas con glaseado real con el nombre, logo o tema que quieras." }
+        ]
+      },
+
+      // Links viejos de México (sin ?giro=): Burger Bros en pesos, como estaba
       hamburguesas: {
-        nombre: "Burger Bros", logo: "🍔", tipo: "pedido", carta: "Menú",
+        tema: "burger", moneda: "MXN", nombre: "Burger Bros", logo: "🍔", carta: "Menú",
         slogan: "Hamburguesas al carbón hechas con amor de hermanos",
+        estado: "Abierto ahora · Pedidos sin esperas",
         portada: "1550547660-d9450f859349",
-        colores: { oro: "#ffc229", oro2: "#f5a400", rojo: "#e63232", rojo2: "#b81d1d", fondo: "#0b0b0b", brillo1: "rgba(230,50,50,.18)", brillo2: "rgba(255,194,41,.12)" },
+        accion: "Enviar pedido por WhatsApp", totalLbl: "Total a pagar", saludo: "Quiero hacer este pedido:",
+        unidad: ["producto", "productos"],
         categorias: [
           { id: "hamburguesas", nombre: "Hamburguesas", icono: "🍔" },
           { id: "combos", nombre: "Combos", icono: "🍟" },
@@ -466,183 +542,75 @@
           { cat: "bebidas", nombre: "Refresco Helado", precio: 35, etiqueta: "Bien frío", img: "1554866585-cd94860890b7",
             desc: "Refresco de cola de 600 ml servido con hielo. El compañero ideal para tu hamburguesa." }
         ]
-      },
-
-      estetica: {
-        nombre: "Glow Studio", logo: "💅", tipo: "cita", carta: "Servicios",
-        slogan: "Tu momento para verte y sentirte increíble",
-        portada: "1560066984-138dadb4c035",
-        colores: { oro: "#ff9ccb", oro2: "#f06aa8", rojo: "#a66bff", rojo2: "#7d45d9", fondo: "#0d0a0e", brillo1: "rgba(166,107,255,.18)", brillo2: "rgba(255,156,203,.14)" },
-        categorias: [
-          { id: "cabello", nombre: "Cabello", icono: "💇‍♀️" },
-          { id: "unas", nombre: "Uñas", icono: "💅" },
-          { id: "facial", nombre: "Facial y Maquillaje", icono: "✨" }
-        ],
-        productos: [
-          { cat: "cabello", nombre: "Corte y peinado", precio: 350, etiqueta: "Más pedido", img: "1562322140-8baeececf3df",
-            desc: "Lavado con masaje capilar, corte a tu estilo y peinado con secadora o planchado. Sales lista para lucir." },
-          { cat: "cabello", nombre: "Balayage / Tinte completo", precio: 1450, desde: true, etiqueta: "Tendencia", img: "1522337360788-8b13dee7a37e",
-            desc: "Color profesional con tonos naturales y luminosos, tratamiento protector y matiz. El precio final depende del largo de tu cabello." },
-          { cat: "unas", nombre: "Uñas de gel decoradas", precio: 380, etiqueta: "💖 Favorito", img: "1604654894610-df63bc536371",
-            desc: "Aplicación de gel con el diseño que quieras: francés, mármol, glitter o arte a mano. Duran hasta 3 semanas impecables." },
-          { cat: "unas", nombre: "Manicure spa", precio: 260, etiqueta: "Relajante", img: "1610992015732-2449b76344bc",
-            desc: "Limpieza, exfoliación, hidratación profunda con parafina y esmaltado tradicional. Manos suaves y bonitas." },
-          { cat: "facial", nombre: "Facial hidratante", precio: 650, etiqueta: "Piel radiante", img: "1570172619644-dfd03ed5d881",
-            desc: "Limpieza profunda, exfoliación, extracción, mascarilla y masaje facial. Tu piel fresca, luminosa y renovada." },
-          { cat: "facial", nombre: "Maquillaje para evento", precio: 850, etiqueta: "Social", img: "1487412947147-5cebf100ffc2",
-            desc: "Maquillaje profesional de larga duración con pestañas incluidas. Ideal para bodas, XV años, graduaciones y fiestas." }
-        ]
-      },
-
-      pasteleria: {
-        nombre: "Dulce Hornito", logo: "🎂", tipo: "pedido", carta: "Menú",
-        slogan: "Pasteles y postres hechos en casa, todos los días",
-        portada: "1621303837174-89787a7d4729",
-        colores: { oro: "#ffb4c8", oro2: "#ff86a8", rojo: "#b8693d", rojo2: "#8e4d2b", fondo: "#0e0b0b", brillo1: "rgba(255,134,168,.16)", brillo2: "rgba(184,105,61,.16)" },
-        categorias: [
-          { id: "pasteles", nombre: "Pasteles", icono: "🎂" },
-          { id: "postres", nombre: "Postres", icono: "🍰" },
-          { id: "cupcakes", nombre: "Cupcakes y Galletas", icono: "🧁" }
-        ],
-        productos: [
-          { cat: "pasteles", nombre: "Pastel de chocolate", precio: 690, etiqueta: "Para 20 personas", img: "1578985545062-69928b1d9587",
-            desc: "Bizcocho húmedo de chocolate, relleno de ganache y cubierto con betún de chocolate belga. El favorito de los cumpleaños." },
-          { cat: "pasteles", nombre: "Pastel de frutos rojos", precio: 620, etiqueta: "Fresco", img: "1565958011703-44f9829ba187",
-            desc: "Pan de vainilla con crema chantilly, frambuesas y fresas naturales. Ligero, esponjoso y muy fresco." },
-          { cat: "postres", nombre: "Cheesecake de mora azul", precio: 95, etiqueta: "Rebanada", img: "1533134242443-d4fd215305ad",
-            desc: "Cremoso cheesecake estilo New York sobre base de galleta, bañado con mermelada artesanal de mora azul." },
-          { cat: "postres", nombre: "Pay de limón con merengue", precio: 340, etiqueta: "Completo", img: "1519915028121-7d3463d20b13",
-            desc: "Base crujiente de galleta, relleno cremoso de limón y merengue flameado. El clásico que nunca falla." },
-          { cat: "cupcakes", nombre: "Cupcakes decorados (6)", precio: 230, etiqueta: "Caja de regalo", img: "1599785209707-a456fc1337bb",
-            desc: "Seis cupcakes de vainilla o chocolate con betún de colores y sprinkles. Perfectos para regalar o para la fiesta." },
-          { cat: "cupcakes", nombre: "Galletas con chispas (12)", precio: 180, etiqueta: "Recién horneadas", img: "1558961363-fa8fdf82db35",
-            desc: "Docena de galletas suavecitas por dentro y doraditas por fuera, con muchas chispas de chocolate." }
-        ]
-      },
-
-      floristeria: {
-        nombre: "Flor de Luna", logo: "💐", tipo: "pedido", carta: "Catálogo",
-        slogan: "Flores frescas para cada momento especial",
-        portada: "1487530811176-3780de880c2d",
-        colores: { oro: "#86e3ad", oro2: "#4cc985", rojo: "#ff6f9f", rojo2: "#e04a7f", fondo: "#0a0d0b", brillo1: "rgba(255,111,159,.16)", brillo2: "rgba(134,227,173,.12)" },
-        categorias: [
-          { id: "ramos", nombre: "Ramos", icono: "💐" },
-          { id: "arreglos", nombre: "Arreglos", icono: "🌸" },
-          { id: "especiales", nombre: "Ocasiones especiales", icono: "💝" }
-        ],
-        productos: [
-          { cat: "ramos", nombre: "Ramo de tulipanes", precio: 790, etiqueta: "Elegante", img: "1561181286-d3fee7d55364",
-            desc: "Doce tulipanes rosas frescos envueltos con papel coreano y listón. Un detalle fino que enamora a primera vista." },
-          { cat: "ramos", nombre: "Ramo de girasoles", precio: 520, etiqueta: "Alegre", img: "1455659817273-f96807779a8a",
-            desc: "Girasoles radiantes con follaje verde. Perfecto para felicitar, agradecer o alegrarle el día a alguien." },
-          { cat: "arreglos", nombre: "Arreglo primaveral", precio: 890, etiqueta: "Más vendido", img: "1487530811176-3780de880c2d",
-            desc: "Rosas, claveles, lisianthus y follajes de temporada en un arreglo abundante y colorido. Incluye tarjeta." },
-          { cat: "arreglos", nombre: "Arreglo de rosas pastel", precio: 750, etiqueta: "Romántico", img: "1563241527-3004b7be0ffd",
-            desc: "Rosas en tonos rosa pastel y crema con eucalipto, en base de yute. Delicado y perfecto para regalar." },
-          { cat: "especiales", nombre: "Corazón de flores", precio: 1150, etiqueta: "💝 Aniversario", img: "1526047932273-341f2a7631f9",
-            desc: "Arreglo en forma de corazón con rosas, gerberas y flores amarillas. Para decir te quiero en grande." },
-          { cat: "especiales", nombre: "Rosas arcoíris (12)", precio: 1290, etiqueta: "Único", img: "1508610048659-a06b669e3321",
-            desc: "Docena de rosas de colores arcoíris, una sorpresa que nadie olvida. Incluye caja y tarjeta personalizada." }
-        ]
-      },
-
-      barberia: {
-        nombre: "Barbería Don Filo", logo: "💈", tipo: "cita", carta: "Servicios",
-        slogan: "Cortes con estilo, navaja y buena plática",
-        portada: "1585747860715-2ba37e788b70",
-        colores: { oro: "#d9a54a", oro2: "#b8862e", rojo: "#c0392b", rojo2: "#922b21", fondo: "#0a0b0d", brillo1: "rgba(192,57,43,.16)", brillo2: "rgba(217,165,74,.12)" },
-        categorias: [
-          { id: "cortes", nombre: "Cortes", icono: "✂️" },
-          { id: "barba", nombre: "Barba", icono: "🧔" },
-          { id: "paquetes", nombre: "Paquetes", icono: "💈" }
-        ],
-        productos: [
-          { cat: "cortes", nombre: "Corte clásico", precio: 180, etiqueta: "Tradicional", img: "1593702288056-7927b442d0fa",
-            desc: "Corte con tijera y máquina a tu gusto, lavado y peinado con producto. Sales fresco y bien arreglado." },
-          { cat: "cortes", nombre: "Fade / Degradado", precio: 220, etiqueta: "🔥 El más pedido", img: "1622286342621-4bd786c2447c",
-            desc: "Degradado bajo, medio o alto con acabado perfecto y diseño de línea si lo quieres. Detalle total." },
-          { cat: "barba", nombre: "Perfilado de barba", precio: 150, etiqueta: "Precisión", img: "1599351431202-1e0f0137899a",
-            desc: "Recorte, perfilado con navaja y aceite para barba. Una barba definida que se nota." },
-          { cat: "barba", nombre: "Afeitado con toalla caliente", precio: 200, etiqueta: "Clásico", img: "1503951914875-452162b0f3f1",
-            desc: "Ritual de afeitado a navaja con toallas calientes, espuma tradicional y bálsamo. Piel suave y relajada." },
-          { cat: "paquetes", nombre: "Corte + Barba", precio: 330, etiqueta: "Ahorra $40", img: "1622287162716-f311baa1a2b8",
-            desc: "Tu corte favorito más perfilado de barba con navaja. El combo completo para verte impecable." },
-          { cat: "paquetes", nombre: "Paquete VIP", precio: 480, etiqueta: "Experiencia", img: "1605497788044-5a32c7078486",
-            desc: "Corte, barba, mascarilla negra, lavado con masaje y bebida de cortesía. Consiéntete como mereces." }
-        ]
-      },
-
-      pizzeria: {
-        nombre: "Pizza Nonna", logo: "🍕", tipo: "pedido", carta: "Menú",
-        slogan: "Pizza artesanal horneada al momento",
-        portada: "1541745537411-b8046dc6d66c",
-        colores: { oro: "#ffb547", oro2: "#ff8a1f", rojo: "#e8402a", rojo2: "#b82d1b", fondo: "#0c0a09", brillo1: "rgba(232,64,42,.18)", brillo2: "rgba(255,181,71,.12)" },
-        categorias: [
-          { id: "pizzas", nombre: "Pizzas", icono: "🍕" },
-          { id: "entradas", nombre: "Entradas", icono: "🍗" },
-          { id: "bebidas", nombre: "Bebidas", icono: "🥤" }
-        ],
-        productos: [
-          { cat: "pizzas", nombre: "Pepperoni grande", precio: 229, etiqueta: "La favorita", img: "1628840042765-356cda07504e",
-            desc: "Masa artesanal, salsa de tomate de la casa, mucho queso mozzarella y pepperoni que se dora en el horno. 8 rebanadas." },
-          { cat: "pizzas", nombre: "Margarita grande", precio: 209, etiqueta: "Clásica", img: "1574071318508-1cdbab80d002",
-            desc: "Salsa de tomate natural, mozzarella fresca, albahaca y un toque de aceite de oliva. Sencilla y deliciosa." },
-          { cat: "entradas", nombre: "Alitas BBQ (10 pzas)", precio: 169, etiqueta: "🔥 Picositas", img: "1567620832903-9fc6debc209f",
-            desc: "Alitas jugosas bañadas en salsa BBQ o búfalo, con aderezo ranch y bastones de apio." },
-          { cat: "entradas", nombre: "Pan de ajo con queso", precio: 79, etiqueta: "Para compartir", img: "1573140401552-3fab0b24306f",
-            desc: "Pan horneado con mantequilla de ajo, perejil y queso gratinado. Acompañado de salsa marinara." },
-          { cat: "bebidas", nombre: "Refresco 2 litros", precio: 55, etiqueta: "Bien frío", img: "1622483767028-3f66f32aef97",
-            desc: "Refresco de cola de 2 litros bien frío. Para que toda la familia acompañe su pizza." },
-          { cat: "bebidas", nombre: "Limonada natural 1 L", precio: 59, etiqueta: "Natural", img: "1523371054106-bbf80586c38c",
-            desc: "Limonada preparada al momento con limones frescos, mineral o natural, con hielo." }
-        ]
       }
     };
 
     // ====== LEER LA URL (?giro=...&cliente=...) ======
     const quitarAcentos = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "");
     const ALIAS = {
-      hamburguesas: "hamburguesas", hamburguesa: "hamburguesas", hamburgueseria: "hamburguesas", burger: "hamburguesas", burgers: "hamburguesas",
-      estetica: "estetica", esteticas: "estetica", salon: "estetica", belleza: "estetica", unas: "estetica",
-      pasteleria: "pasteleria", pastelerias: "pasteleria", pasteles: "pasteleria", reposteria: "pasteleria",
-      floristeria: "floristeria", floreria: "floristeria", florerias: "floristeria", flores: "floristeria",
+      servicios: "servicios", servicio: "servicios", cleaning: "servicios", limpieza: "servicios", landscaping: "servicios", handyman: "servicios",
+      estetica: "estetica", esteticas: "estetica", salon: "estetica", belleza: "estetica", unas: "estetica", nails: "estetica", lashes: "estetica",
+      comida: "comida", food: "comida", foodtruck: "comida", taqueria: "comida", tacos: "comida", restaurante: "comida", pizzeria: "comida",
       barberia: "barberia", barberias: "barberia", barber: "barberia", barbershop: "barberia",
-      pizzeria: "pizzeria", pizzerias: "pizzeria", pizza: "pizzeria", pizzas: "pizzeria"
+      pasteleria: "pasteleria", pastelerias: "pasteleria", cakes: "pasteleria", reposteria: "pasteleria", pasteles: "pasteleria",
+      hamburguesas: "hamburguesas", hamburgueseria: "hamburguesas", burger: "hamburguesas"
     };
     const params = new URLSearchParams(location.search);
     const giroURL = quitarAcentos((params.get("giro") || "").trim().toLowerCase()).replace(/[^a-z]/g, "");
-    const GIRO_ID = ALIAS[giroURL] || "hamburguesas"; // sin giro = Burger Bros, como antes
+    const GIRO_ID = ALIAS[giroURL] || "hamburguesas"; // sin giro = Burger Bros, para no romper los links viejos
     const G = GIROS[GIRO_ID];
-    const ES_CITA = G.tipo === "cita";
+    const T = TEMAS[G.tema];
+    const USD = G.moneda === "USD";
 
     const clienteURL = (params.get("cliente") || "").trim().slice(0, 60);
     const NEGOCIO = clienteURL || G.nombre;
 
-    // ====== APLICAR GIRO ======
-    const raiz = document.documentElement.style;
-    const c = G.colores;
-    raiz.setProperty("--oro", c.oro); raiz.setProperty("--oro-2", c.oro2);
-    raiz.setProperty("--rojo", c.rojo); raiz.setProperty("--rojo-2", c.rojo2);
-    raiz.setProperty("--negro", c.fondo);
-    raiz.setProperty("--brillo-1", c.brillo1); raiz.setProperty("--brillo-2", c.brillo2);
-    document.querySelector('meta[name="theme-color"]').content = c.fondo;
-    if (ES_CITA) document.body.classList.add("citas");
+    // ====== APLICAR TEMA ======
+    const css = document.documentElement.style;
+    const poner = (v, x) => css.setProperty(v, x);
+    poner("--fondo", T.fondo); poner("--tarjeta", T.tarjeta); poner("--tarjeta-2", T.tarjeta2); poner("--borde", T.borde);
+    poner("--texto", T.texto); poner("--texto-2", T.texto2);
+    poner("--acento", T.acento); poner("--acento-2", T.acento2); poner("--sobre-acento", T.sobreAcento);
+    poner("--sec", T.sec); poner("--sec-2", T.sec2); poner("--sobre-sec", T.sobreSec);
+    poner("--h1", T.h1); poner("--h1-sombra", T.h1Sombra);
+    poner("--brillo-1", T.brillo1); poner("--brillo-2", T.brillo2);
+    if (T.oscuro) {
+      poner("--portada-velo", `linear-gradient(180deg, rgba(0,0,0,.35), ${T.fondo} 95%)`);
+      poner("--foto-velo", `linear-gradient(180deg, transparent 55%, ${T.tarjeta2}f2)`);
+      poner("--tabs-bg", T.fondo + "e0"); poner("--barra-bg", T.tarjeta2 + "eb");
+      poner("--control-bg", T.fondo); poner("--menos-bg", T.borde);
+      poner("--sombra", "0 10px 30px rgba(0,0,0,.45)");
+      document.body.classList.add("oscuro");
+    } else {
+      poner("--portada-velo", `linear-gradient(180deg, ${T.fondo}59, ${T.fondo}d9 60%, ${T.fondo} 97%)`);
+      poner("--foto-velo", "none");
+      poner("--tabs-bg", T.fondo + "e6"); poner("--barra-bg", T.tarjeta + "f2");
+      poner("--control-bg", T.tarjeta2); poner("--menos-bg", T.borde);
+      poner("--sombra", "0 8px 24px rgba(30,40,60,.08)");
+    }
+    if (T.serif) { poner("--fuente-titulo", '"Playfair Display", serif'); document.body.classList.add("serif"); }
+    document.querySelector('meta[name="theme-color"]').content = T.fondo;
 
     document.title = `${NEGOCIO} | ${G.carta}`;
-    document.getElementById("portada").style.backgroundImage = `url("${foto(G.portada).replace("w=800", "w=900")}")`;
+    document.getElementById("portada").style.backgroundImage = `url("${foto(G.portada, 900)}")`;
     document.getElementById("logo").textContent = G.logo;
     document.getElementById("slogan").textContent = G.slogan;
-    document.getElementById("estadoTxt").innerHTML = ES_CITA
-      ? "<b>Abierto ahora</b> · Agenda tu cita sin esperas"
-      : "<b>Abierto ahora</b> · Pedidos sin esperas";
-    document.getElementById("totalLbl").textContent = ES_CITA ? "Total estimado" : "Total a pagar";
-    document.getElementById("btnWaTxt").textContent = ES_CITA ? "Agendar cita por WhatsApp" : "Enviar pedido por WhatsApp";
+    const [abierto, ...resto] = G.estado.split(" · ");
+    document.getElementById("estadoTxt").innerHTML = `<b></b>${resto.length ? " · " : ""}<span></span>`;
+    document.querySelector("#estadoTxt b").textContent = abierto;
+    document.querySelector("#estadoTxt span").textContent = resto.join(" · ");
+    document.getElementById("totalLbl").textContent = G.totalLbl;
+    document.getElementById("btnWaTxt").textContent = G.accion;
+    document.getElementById("monedaTxt").textContent = USD ? "Precios en dólares (USD)" : "Precios en pesos mexicanos (MXN)";
+    if (G.extra) { document.body.classList.add("con-extra"); document.getElementById("extra").placeholder = G.extra; }
+    if (G.entrega) document.body.classList.add("con-entrega");
 
     const h1 = document.getElementById("nombreNegocio");
     h1.textContent = NEGOCIO;
     // nombres largos: bajamos el tamaño para que quepa en el celular
-    if (NEGOCIO.length > 22) h1.style.fontSize = "38px";
-    else if (NEGOCIO.length > 14) h1.style.fontSize = "48px";
+    const grande = T.serif ? 44 : 58;
+    if (NEGOCIO.length > 22) h1.style.fontSize = Math.round(grande * 0.66) + "px";
+    else if (NEGOCIO.length > 14) h1.style.fontSize = Math.round(grande * 0.82) + "px";
     document.getElementById("nombreFooter").textContent = NEGOCIO;
 
     if (clienteURL) {
@@ -652,19 +620,21 @@
       cint.classList.add("ver");
     }
 
-    const PRODUCTOS = G.productos.map((p, i) => ({ ...p, id: i + 1 }));
-    const CATEGORIAS = G.categorias;
+    // ====== PRECIOS ======
+    const dinero = n => USD
+      ? "$" + n.toLocaleString("en-US", { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 })
+      : "$" + n.toLocaleString("es-MX");
+    const precioTotal = n => USD ? "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : dinero(n);
 
-    // ====== ESTADO ======
+    const PRODUCTOS = G.productos.map((p, i) => ({ ...p, id: i + 1 }));
     const carrito = {}; // { idProducto: cantidad }
-    const pesos = n => "$" + n.toLocaleString("es-MX");
     const esc = s => String(s).replace(/[&<>"']/g, ch => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[ch]));
 
     // ====== PINTAR CATÁLOGO ======
     const tabs = document.getElementById("tabs");
     const menu = document.getElementById("menu");
 
-    CATEGORIAS.forEach((cat, i) => {
+    G.categorias.forEach((cat, i) => {
       const btn = document.createElement("button");
       btn.className = "tab" + (i === 0 ? " activa" : "");
       btn.dataset.cat = cat.id;
@@ -690,7 +660,7 @@
             <h3>${esc(p.nombre)}</h3>
             <p>${esc(p.desc)}</p>
             <div class="fila">
-              <div class="precio">${p.desde ? '<span class="desde">Desde</span>' : ""}${pesos(p.precio)}<small>MXN</small></div>
+              <div class="precio">${p.desde ? '<span class="desde">Desde</span>' : ""}${dinero(p.precio)}<small>${G.moneda}</small></div>
               <div class="contador">
                 <button class="btn-cant menos" aria-label="Quitar uno" data-id="${p.id}" data-d="-1" disabled>−</button>
                 <span class="cant" id="cant-${p.id}">0</span>
@@ -712,21 +682,12 @@
       const d = Number(btn.dataset.d);
       const nueva = Math.max(0, (carrito[id] || 0) + d);
       if (nueva === 0) delete carrito[id]; else carrito[id] = nueva;
-
       if (d > 0) {
-        const p = PRODUCTOS.find(x => x.id === id);
-        avisar(`✅ ${p.nombre} agregado`);
+        avisar(`✅ ${PRODUCTOS.find(x => x.id === id).nombre} agregado`);
         if (navigator.vibrate) navigator.vibrate(15);
       }
       actualizar(id);
     });
-
-    function textoItems(n) {
-      if (!n) return ES_CITA ? "Elige tus servicios" : "Tu pedido está vacío";
-      return ES_CITA
-        ? `<b>${n}</b> servicio${n > 1 ? "s" : ""} elegido${n > 1 ? "s" : ""}`
-        : `<b>${n}</b> producto${n > 1 ? "s" : ""} en tu pedido`;
-    }
 
     function actualizar(id) {
       if (id) {
@@ -736,21 +697,33 @@
         document.getElementById("card-" + id).classList.toggle("en-pedido", cant > 0);
         document.querySelector(`.menos[data-id="${id}"]`).disabled = cant === 0;
       }
-
       let total = 0, piezas = 0;
       for (const [pid, n] of Object.entries(carrito)) {
         total += PRODUCTOS.find(p => p.id === Number(pid)).precio * n;
         piezas += n;
       }
-
       const totalEl = document.getElementById("total");
-      totalEl.textContent = pesos(total);
+      totalEl.textContent = precioTotal(total);
       if (id) { totalEl.classList.remove("pop"); void totalEl.offsetWidth; totalEl.classList.add("pop"); }
 
-      document.getElementById("items").innerHTML = textoItems(piezas);
+      const [uno, varios] = G.unidad;
+      document.getElementById("items").innerHTML = piezas
+        ? `<b>${piezas}</b> ${piezas > 1 ? varios : uno} elegido${piezas > 1 ? "s" : ""}`
+        : `Elige tus ${varios}`;
       document.getElementById("btnWa").disabled = piezas === 0;
     }
     actualizar();
+
+    // ====== PICK-UP / DELIVERY ======
+    let entrega = "Pick-up";
+    document.getElementById("entrega").addEventListener("click", e => {
+      const b = e.target.closest("[data-entrega]");
+      if (!b) return;
+      entrega = b.dataset.entrega;
+      document.querySelectorAll("[data-entrega]").forEach(x => x.classList.toggle("activa", x === b));
+      document.body.classList.toggle("delivery", entrega === "Delivery");
+      if (entrega === "Delivery") document.getElementById("direccion").focus();
+    });
 
     // ====== WHATSAPP ======
     document.getElementById("btnWa").addEventListener("click", () => {
@@ -761,24 +734,26 @@
         if (!n) return;
         const sub = p.precio * n;
         total += sub;
-        lineas.push(`• ${n} x ${p.nombre} — ${p.desde ? "desde " : ""}${pesos(sub)}`);
+        lineas.push(`• ${n} x ${p.nombre} — ${p.desde ? "desde " : ""}${precioTotal(sub)}`);
       });
 
-      let mensaje;
-      if (ES_CITA) {
-        const horario = document.getElementById("horario").value.trim();
-        mensaje =
-          `${G.logo} *¡Hola ${NEGOCIO}!* Quiero agendar una cita para:\n\n` +
-          lineas.join("\n") +
-          `\n\n💰 *Total estimado: ${pesos(total)} MXN*` +
-          (horario ? `\n📅 *Me gustaría:* ${horario}` : "") +
-          `\n\n¿Qué horarios tienen disponibles? ¡Gracias! 🙌`;
-      } else {
-        mensaje =
-          `${G.logo} *¡Hola ${NEGOCIO}!* Quiero hacer este pedido:\n\n` +
-          lineas.join("\n") +
-          `\n\n💰 *Total a pagar: ${pesos(total)} MXN*\n\n¡Gracias! 🙌`;
+      let detalles = "";
+      if (G.entrega) {
+        const dir = document.getElementById("direccion").value.trim();
+        detalles += entrega === "Delivery"
+          ? `\n🛵 *Delivery*${dir ? " a: " + dir : ""}`
+          : `\n🛍️ *Pick-up* (paso a recogerlo)`;
       }
+      const extra = document.getElementById("extra").value.trim();
+      if (G.extra && extra) detalles += `\n${G.extraLbl}: ${extra}`;
+
+      const hayDesde = PRODUCTOS.some(p => carrito[p.id] && p.desde);
+      const mensaje =
+        `${G.logo} *¡Hola ${NEGOCIO}!* ${G.saludo}\n\n` +
+        lineas.join("\n") +
+        `\n\n💰 *${G.totalLbl}: ${hayDesde ? "desde " : ""}${precioTotal(total)} ${G.moneda}*` +
+        detalles +
+        `\n\n¡Gracias! 🙌`;
 
       window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensaje)}`, "_blank");
     });
@@ -797,8 +772,7 @@
     const obs = new IntersectionObserver(entradas => {
       entradas.forEach(en => {
         if (en.isIntersecting) {
-          document.querySelectorAll(".tab").forEach(t =>
-            t.classList.toggle("activa", t.dataset.cat === en.target.id));
+          document.querySelectorAll(".tab").forEach(t => t.classList.toggle("activa", t.dataset.cat === en.target.id));
         }
       });
     }, { rootMargin: "-40% 0px -55% 0px" });
