@@ -210,6 +210,12 @@
                 background: linear-gradient(135deg, #25d366, #128c7e); color: #fff; font-size: 26px; border: 0; cursor: pointer; transition: transform .2s;
                 animation: waPulso 2s infinite; }
     .wa-float:hover { transform: scale(1.08); }
+    /* ---------- barra fija para contactar a Marcos (solo en la muestra) ---------- */
+    .barra-marcos { position: fixed; left: 0; right: 0; bottom: 0; z-index: 65; display: flex; align-items: center; justify-content: center; gap: 8px;
+                    padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: linear-gradient(90deg, #111827, #1f2937); color: #fff;
+                    font: 700 14px/1.35 "Plus Jakarta Sans", sans-serif; text-align: center; text-decoration: none; box-shadow: 0 -8px 24px -8px rgba(0,0,0,.45); }
+    .barra-marcos u { color: #fcd34d; text-underline-offset: 3px; }
+    body.con-barra .wa-float { bottom: 86px; }
     @keyframes waPulso { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,.65), 0 14px 30px -8px rgba(37,211,102,.6); }
                          70% { box-shadow: 0 0 0 20px rgba(37,211,102,0), 0 14px 30px -8px rgba(37,211,102,.6); }
                          100% { box-shadow: 0 0 0 0 rgba(37,211,102,0), 0 14px 30px -8px rgba(37,211,102,.6); } }
@@ -487,22 +493,22 @@
         serv: { pre: ["Nuestros servicios", "Our services"], titulo: ["Limpieza para cada espacio", "Cleaning for every space"],
           sub: ["Precios de referencia según tamaño y tipo de limpieza.", "Reference pricing based on size and type of cleaning."],
           lista: [
-            { n: ["Limpieza residencial", "House cleaning"], ref: "$129", tag: ["Residencial", "Residential"], img: "1581578731548-c64695cc6952", top: 1,
+            { n: ["Limpieza residencial estándar", "Standard House Cleaning"], ref: "$129", tag: ["Residencial", "Residential"], img: "1581578731548-c64695cc6952", top: 1,
               d: ["Polvo, pisos, cocina, baños y recámaras. Semanal, quincenal o una vez.", "Dusting, floors, kitchen, bathrooms and bedrooms. Weekly, biweekly or one-time."],
               inc: [["Cocina y baños", "Kitchen & bathrooms"], ["Pisos y polvo", "Floors & dusting"], ["Tendido de camas", "Bed making"]] },
-            { n: ["Deep cleaning", "Deep cleaning"], ref: "$229", tag: ["A fondo", "Top to bottom"], img: "1628177142898-93e36e4e3a50", top: 2,
+            { n: ["Limpieza profunda", "Deep Clean"], ref: "$229", tag: ["A fondo", "Top to bottom"], img: "1628177142898-93e36e4e3a50", top: 2,
               d: ["Zoclos, puertas, lámparas, gabinetes, sarro en baños y rincones olvidados.", "Baseboards, doors, light fixtures, cabinets, bathroom buildup and forgotten corners."],
               inc: [["Zoclos y puertas", "Baseboards & doors"], ["Sarro en baños", "Bathroom buildup"], ["Gabinetes por fuera", "Cabinet fronts"]] },
-            { n: "Airbnb turnover", ref: "$89", tag: ["Renta corta", "Short-term rental"], img: "1631049307264-da0ec9d70304",
+            { n: ["Limpieza entre huéspedes Airbnb", "Airbnb Turnover Clean"], ref: "$89", tag: ["Renta corta", "Short-term rental"], img: "1631049307264-da0ec9d70304",
               d: ["Cambio de sábanas y toallas, amenidades y fotos de control entre huéspedes.", "Linen and towel change, amenity restock and checklist photos between guests."],
               inc: [["Cambio de blancos", "Linen change"], ["Reposición de amenidades", "Amenity restock"], ["Fotos de control", "Checklist photos"]] },
-            { n: ["Limpieza de oficinas", "Office cleaning"], ref: "$199", tag: ["Comercial", "Commercial"], img: "1497366216548-37526070297c",
+            { n: ["Limpieza de oficinas y comercios", "Commercial / Office Cleaning"], ref: "$199", tag: ["Comercial", "Commercial"], img: "1497366216548-37526070297c",
               d: ["Oficinas, consultorios y locales, fuera de horario para no interrumpir.", "Offices, clinics and storefronts, after hours so you're never interrupted."],
               inc: [["Fuera de horario", "After hours"], ["Escritorios y baños", "Desks & restrooms"], ["Basura y reciclaje", "Trash & recycling"]] },
-            { n: "Move-in / Move-out", ref: "$279", tag: ["Mudanzas", "Moving"], img: "1522708323590-d24dbb6b0267",
+            { n: ["Limpieza de mudanza (entrada / salida)", "Move-In / Move-Out Clean"], ref: "$279", tag: ["Mudanzas", "Moving"], img: "1522708323590-d24dbb6b0267",
               d: ["Propiedad lista para entregar o estrenar, con gabinetes y closets por dentro.", "Property ready to hand over or move in, including inside cabinets and closets."],
               inc: [["Gabinetes por dentro", "Inside cabinets"], ["Closets", "Closets"], ["Electrodomésticos", "Appliances"]] },
-            { n: ["Extras: refri, horno y ventanas", "Add-ons: fridge, oven & windows"], ref: "$35", tag: "Add-on", img: "1556911220-bff31c812dba",
+            { n: ["Extras: refri, horno y ventanas", "Add-Ons: Inside Fridge, Oven & Windows"], ref: "$35", tag: "Add-on", img: "1556911220-bff31c812dba",
               d: ["Interior de refrigerador, horno, ventanas y lavandería.", "Inside fridge, oven, windows and laundry."],
               inc: [["Refrigerador por dentro", "Inside fridge"], ["Horno", "Oven"], ["Ventanas", "Windows"]] }
           ] },
@@ -722,24 +728,24 @@
         serv: { pre: ["Servicios", "Services"], titulo: ["Consiéntete como mereces", "Treat yourself"],
           sub: ["Precios de referencia. El precio final depende del diseño y largo.", "Reference pricing. Final price depends on design and length."],
           lista: [
-            { n: ["Uñas acrílicas", "Acrylic nails"], ref: "$55", tag: ["Uñas", "Nails"], img: "1519014816548-bf5fe059798b", top: 1,
-              d: ["Juego completo con la forma, el largo y el diseño que quieras.", "Full set in the shape, length and design you want."],
-              inc: [["Forma a tu gusto", "Your choice of shape"], ["Diseño personalizado", "Custom design"], ["Duran 3 semanas", "Last 3 weeks"]] },
-            { n: "Lash extensions", ref: "$120", tag: "Full set", img: "1631214540553-ff044a3ff1d4", top: 2,
-              d: ["Extensiones clásicas o de volumen para una mirada definida.", "Classic or volume extensions for defined eyes."],
-              inc: [["Clásicas o volumen", "Classic or volume"], ["Look natural", "Natural look"], ["Retoques disponibles", "Fill-ins available"]] },
-            { n: ["Cejas: laminado + diseño", "Brow lamination + design"], ref: "$65", tag: ["Tendencia", "Trending"], img: "1487412947147-5cebf100ffc2",
-              d: ["Laminado, diseño con cera y tinte para cejas perfectas.", "Lamination, wax shaping and tint for perfect brows."],
+            { n: ["Pestañas clásicas: juego completo", "Classic Lash Full Set"], ref: "$120", tag: ["Más pedido", "Full set"], img: "1631214540553-ff044a3ff1d4", top: 1,
+              d: ["Una extensión por cada pestaña natural para un look definido y natural.", "One extension per natural lash for a clean, natural look."],
+              inc: [["Mapeo de pestañas", "Custom lash mapping"], ["Look natural", "Natural look"], ["Dura 2-3 semanas", "Lasts 2-3 weeks"]] },
+            { n: ["Relleno híbrido / volumen", "Hybrid / Volume Fill"], ref: "$65", tag: ["Relleno", "2-3 week fill"], img: "1562322140-8baeececf3df", top: 2,
+              d: ["Retoque de tus extensiones híbridas o de volumen cada 2 a 3 semanas.", "Refresh your hybrid or volume set every 2-3 weeks."],
+              inc: [["Hasta 3 semanas", "Up to 3 weeks out"], ["Limpieza de pestañas", "Lash bath included"], ["Volumen parejo", "Even, full volume"]] },
+            { n: ["Lifting de pestañas + tinte", "Lash Lift & Tint"], ref: "$75", tag: ["Sin extensiones", "No extensions"], img: "1631214540553-ff044a3ff1d4",
+              d: ["Curvatura y color a tus pestañas naturales que dura de 6 a 8 semanas.", "Curl and darken your natural lashes for 6-8 weeks."],
+              inc: [["Lifting", "Lift"], ["Tinte", "Tint"], ["Dura 6-8 semanas", "Lasts 6-8 weeks"]] },
+            { n: ["Laminado de cejas + tinte", "Brow Lamination & Tint"], ref: "$65", tag: ["Tendencia", "Trending"], img: "1487412947147-5cebf100ffc2",
+              d: ["Laminado, diseño con cera y tinte para cejas perfectas.", "Lamination, wax shaping and tint for fluffy, defined brows."],
               inc: [["Laminado", "Lamination"], ["Diseño con cera", "Wax shaping"], ["Tinte", "Tint"]] },
-            { n: ["Corte, color y peinado", "Cut, color & style"], ref: "$85", tag: ["Cabello", "Hair"], img: "1562322140-8baeececf3df",
-              d: ["Corte a tu estilo, color o balayage y peinado profesional.", "A cut that suits you, color or balayage and pro styling."],
-              inc: [["Corte", "Haircut"], ["Color o balayage", "Color or balayage"], ["Peinado", "Styling"]] },
+            { n: ["Uñas Gel-X / acrílicas", "Gel-X / Acrylic Full Set"], ref: "$55", tag: ["Uñas", "Nails"], img: "1519014816548-bf5fe059798b",
+              d: ["Juego completo con la forma, el largo y el diseño que quieras.", "Full set in the shape, length and design you want."],
+              inc: [["Forma a tu gusto", "Your choice of shape"], ["Diseño personalizado", "Custom nail art"], ["Duran 3 semanas", "Last 3 weeks"]] },
             { n: "Hydrafacial", ref: "$150", tag: "Glow", img: "1570172619644-dfd03ed5d881",
               d: ["Limpieza profunda, extracción e hidratación con sueros.", "Deep cleansing, extraction and serum hydration."],
-              inc: [["Limpieza profunda", "Deep cleanse"], ["Extracción", "Extraction"], ["Sueros hidratantes", "Hydrating serums"]] },
-            { n: ["Masaje relajante spa", "Relaxing spa massage"], ref: "$95", tag: "60 min", img: "1544161515-4ab6ce6db874",
-              d: ["Masaje con aceites aromáticos para liberar tensión.", "Aromatic oil massage to release tension."],
-              inc: [["60 minutos", "60 minutes"], ["Aceites aromáticos", "Aromatic oils"], ["Ambiente spa", "Spa atmosphere"]] }
+              inc: [["Limpieza profunda", "Deep cleanse"], ["Extracción", "Extraction"], ["Sueros hidratantes", "Hydrating serums"]] }
           ] },
         porQue: { titulo: ["Tu momento, a tu manera", "Your moment, your way"], lista: [
           ["fa-gem", ["Expertas en lo que hacen", "True experts"], ["Años de experiencia en uñas, pestañas y piel.", "Years of experience in nails, lashes and skin."]],
@@ -1084,6 +1090,8 @@
       const p4 = Math.round((100 - p5) * .65), p3 = Math.round((100 - p5 - p4) * .6), p2 = Math.round((100 - p5 - p4 - p3) * .5);
       return [[5, p5], [4, p4], [3, p3], [2, p2], [1, 100 - p5 - p4 - p3 - p2]]; })();
     let LANG = (params.get("lang") || "").toLowerCase();
+    // Prospecto de EE. UU. (tel empieza con 1): inglés desde el primer segundo; el español queda como botón secundario
+    if (!["es", "en"].includes(LANG) && TEL_DUENO.startsWith("1")) LANG = "en";
     if (!["es", "en"].includes(LANG)) { try { LANG = localStorage.getItem("vc_lang") || "es"; } catch (e) { LANG = "es"; } }
     if (!["es", "en"].includes(LANG)) LANG = "es";
 
@@ -1617,6 +1625,18 @@
       </footer>`;
     }
 
+    // Barra fija abajo: el prospecto le manda SMS a Marcos para cargar sus precios reales (no sale en la web final ni en la captura)
+    const SMS_MARCOS = "+13059269442";
+    const CON_BARRA = !FINAL && VISTA !== "captura";
+    function barraMarcos() {
+      if (!CON_BARRA) return "";
+      const texto = L([`✨ Demo hecha para ${NEGOCIO} — <u>Toca aquí para cargar tus precios reales y tu logo gratis</u>`,
+                       `✨ Demo built for ${NEGOCIO} — <u>Tap here to load your real prices &amp; logo for free</u>`]);
+      const cuerpo = L([`Hola Marcos, acabo de ver la página de muestra de ${NEGOCIO} y quiero cargar mis precios reales.`,
+                        `Hi Marcos, I just checked out the demo page for ${NEGOCIO} and want to load my real prices.`]);
+      return `<a class="barra-marcos" href="sms:${SMS_MARCOS}?&body=${encodeURIComponent(cuerpo)}">${texto.replace(NEGOCIO, esc(NEGOCIO))}</a>`;
+    }
+
     // ====== DIBUJAR LA PÁGINA ======
     let primera = true, contado = false;
     function render() {
@@ -1624,7 +1644,8 @@
       const y = scrollY;
       document.documentElement.lang = LANG;
       document.title = `${NEGOCIO} | ${L(G.etiqueta)}`;
-      $("app").innerHTML = [hdr(U), hero(U), stats(U), nosotros(U), servicios(U), portafolio(U), porQue(U), resenas(U), faq(U), cobertura(U), cotizar(U), pie(U)].join("");
+      $("app").innerHTML = [hdr(U), hero(U), stats(U), nosotros(U), servicios(U), portafolio(U), porQue(U), resenas(U), faq(U), cobertura(U), cotizar(U), pie(U), barraMarcos()].join("");
+      document.body.classList.toggle("con-barra", CON_BARRA);
       pintarIconos();
       $("waFlotante").setAttribute("aria-label", U.waAria);
       if (primera) { primera = false; observar(); }
